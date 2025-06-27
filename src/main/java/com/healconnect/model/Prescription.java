@@ -11,7 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Prescription {
+public class Prescription implements BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

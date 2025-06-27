@@ -13,7 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Patient {
+public class Patient implements BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements BaseEntity{
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

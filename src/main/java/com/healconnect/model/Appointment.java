@@ -12,7 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Appointment {
+public class Appointment implements BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

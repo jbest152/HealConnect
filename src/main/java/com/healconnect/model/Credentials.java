@@ -8,7 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Credentials {
+public class Credentials implements BaseEntity {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
