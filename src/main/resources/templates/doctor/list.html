@@ -6,39 +6,39 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <header class="main-header">
-        <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo">
-        <h1 class="centered-title">Lista Dottori</h1>
-        <a href="/logout" class="login-link">Logout</a>
+
+    <header>
+        <div class="header-main">
+            <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo">
+            <h1 class="titolo-home">Lista Dottori</h1>
+            <a href="/login" class="login-link">Login</a>
+        </div>
     </header>
 
-    <main class="container">
-        <div class="actions">
-            <a class="add-button" th:href="@{/doctor/new}">➕ Crea nuovo dottore</a>
-        </div>
+    <main class="menu">
+        <ul>
+            <li>
+                <a th:href="@{/doctor/new}">➕ Crea nuovo dottore</a>
+            </li>
+        </ul>
 
-        <table class="doctor-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Specializzazione</th>
-                    <th>Azioni</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="doctor : ${doctors}">
-                    <td th:text="${doctor.id}">1</td>
-                    <td th:text="${doctor.specialty}">Cardiologia</td>
-                    <td class="actions-cell">
-                        <a class="action-link" th:href="@{'/doctor/' + ${doctor.id}}">🔍 Dettagli</a>
-                        <a class="action-link" th:href="@{'/doctor/' + ${doctor.id} + '/edit'}">✏️ Modifica</a>
-                        <form th:action="@{'/doctor/' + ${doctor.id} + '/delete'}" method="post" th:object="${doctor}" class="inline-form">
-                            <button class="delete-button" type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo dottore?')">🗑️ Elimina</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <ul th:each="doctor : ${doctors}">
+            <li>
+                <strong>ID:</strong> <span th:text="${doctor.id}">1</span><br />
+                <strong>Specializzazione:</strong> <span th:text="${doctor.specialty}">Cardiologia</span><br /><br />
+                <a th:href="@{'/doctor/' + ${doctor.id}}">🔍 Dettagli</a> |
+                <a th:href="@{'/doctor/' + ${doctor.id} + '/edit'}">✏️ Modifica</a> |
+                <form th:action="@{'/doctor/' + ${doctor.id} + '/delete'}" method="post" th:object="${doctor}" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo dottore?')">🗑️ Elimina</button>
+                </form>
+            </li>
+        </ul>
     </main>
+
+
+    <footer>
+        &copy; 2025 HealConnect - Tutti i diritti riservati
+    </footer>
+
 </body>
 </html>
