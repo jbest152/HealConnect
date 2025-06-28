@@ -57,7 +57,6 @@ public abstract class GenericController<T extends BaseEntity> {
 
 	@PostMapping("/{id}")
 	public String update(@PathVariable Long id, @ModelAttribute("item") T item) {
-		item.setId(id);
 		service.save(item);
 		return "redirect:/" + className + "/" + id;
 	}

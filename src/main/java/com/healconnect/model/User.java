@@ -33,11 +33,6 @@ public class User implements BaseEntity{
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "credentials_id")
-    private Credentials credentials;
-
-
 	public Long getId() {
 		return id;
 	}
@@ -78,17 +73,9 @@ public class User implements BaseEntity{
 		this.roles = roles;
 	}
 
-	public Credentials getCredentials() {
-		return credentials;
-	}
-
-	public void setCredentials(Credentials credentials) {
-		this.credentials = credentials;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(credentials, email, id, name, roles, surname);
+		return Objects.hash(email, id, name, roles, surname);
 	}
 
 	@Override
@@ -100,7 +87,7 @@ public class User implements BaseEntity{
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(credentials, other.credentials) && Objects.equals(email, other.email)
+		return Objects.equals(email, other.email)
 				&& Objects.equals(id, other.id) && Objects.equals(name, other.name)
 				&& Objects.equals(roles, other.roles) && Objects.equals(surname, other.surname);
 	}
