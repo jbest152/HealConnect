@@ -17,8 +17,8 @@ public abstract class GenericController<T extends BaseEntity> {
 
 	@GetMapping
 	public String list(Model model) {
-		model.addAttribute("items", service.findAll());
-		return className + "/list"; // es: templates/doctor/list.html
+		model.addAttribute(className + "s", service.findAll());
+		return className + "/list";
 	}
 
 	@GetMapping("/{id}")
