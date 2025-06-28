@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage HealConnect</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Benvenuto in HealConnect</h1>
+	<header class="header-home">
+	    <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo">
+	    <h1 class="titolo-home">Benvenuto in <span class="highlight">HealConnect</span></h1>
+		<a href="/login" class="login-link">Login</a>
+	</header>
 
-    <ul>
-        <li><a th:href="@{/doctor}">👨‍⚕️ Visualizza tutti i Dottori</a></li>
-        <!-- Aggiungi altri link per pazienti, appuntamenti, ecc. se necessario -->
-    </ul>
+    <main>
+        <nav class="menu">
+            <ul>
+                <li><a th:href="@{/doctor}">👨‍⚕️ Visualizza tutti i Dottori </a></li>
+				<li><a th:href="@{/appointment}">📅 Visualizza i tuoi appuntamenti </a></li>
+				<li><a th:href="@{/medical-record}">📁 Visualizza la tua cartella medica </a></li>
+				<li><a th:href="@{/patient}">👤 Visualizza il tuo account </a></li>
+            </ul>
+        </nav>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 HealConnect - Tutti i diritti riservati</p>
+    </footer>
 </body>
 </html>
