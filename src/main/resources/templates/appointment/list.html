@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Appuntamenti</title>
+</head>
+<body>
+    <h1>Lista Appuntamenti</h1>
+
+    <a th:href="@{/appointment/new}">➕ Crea nuovo appuntamento</a>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Specializzazione</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="doctor : ${doctors}">
+                <td th:text="${doctor.id}">1</td>
+                <td th:text="${doctor.specialty}">Cardiologia</td>
+                <td>
+                    <a th:href="@{'/doctor/' + ${doctor.id}}">🔍 Dettagli</a> |
+                    <a th:href="@{'/doctor/' + ${doctor.id} + '/edit'}">✏️ Modifica</a> |
+                    <form th:action="@{'/doctor/' + ${doctor.id} + '/delete'}" method="post" th:object="${doctor}" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo dottore?')">🗑️ Elimina</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
