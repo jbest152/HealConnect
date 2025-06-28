@@ -51,7 +51,6 @@ public abstract class GenericController<T extends BaseEntity> {
 		return className + "/create";
 	}
 	
-	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping
 	public String create(@Valid @ModelAttribute("item") T item, BindingResult result) {
 		if (result.hasErrors()) {
@@ -70,7 +69,6 @@ public abstract class GenericController<T extends BaseEntity> {
 		return className + "/edit";
 	}
 
-	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/{id}")
 	public String update(@Valid @ModelAttribute("item") T item, BindingResult result, @PathVariable Long id) {
 		if (result.hasErrors()) {
@@ -80,6 +78,7 @@ public abstract class GenericController<T extends BaseEntity> {
 		return "redirect:/" + className + "/" + id;
 	}
 
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/{id}/delete")
 	public String delete(@PathVariable Long id) {
 		service.deleteById(id);
