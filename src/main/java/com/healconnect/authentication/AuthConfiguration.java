@@ -50,6 +50,7 @@ public class AuthConfiguration {
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers(HttpMethod.GET, "/", "/home", "/register", "/login", "/css/**", "/images/**", "/favicon.ico", "/js/**", "/webjars/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/doctor/**", "/patient/**", "/medication/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/doctor/**", "/patient/**", "/medication/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
                 .requestMatchers(HttpMethod.GET, "/appointment/**", "/medical-record/**", "/prescription/**").hasAnyAuthority(Role.DOCTOR.toString(), Role.PATIENT.toString())
                 .requestMatchers("/admin/**").hasAuthority(Role.ADMIN.toString())

@@ -19,7 +19,7 @@ public class Doctor implements BaseEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-	@NotBlank
+	@NotBlank(message = "{doctor.specialty.notblank}")
     private String specialty;
 
     @OneToOne(fetch = FetchType.LAZY)

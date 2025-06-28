@@ -18,11 +18,11 @@ public class Credentials implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-	@NotBlank
-    private String username;
-	
-	@NotBlank
-    private String passwordHash;
+	@NotBlank(message = "{credentials.username.notblank}")
+	private String username;
+
+	@NotBlank(message = "{credentials.passwordHash.notblank}")
+	private String passwordHash;
     
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

@@ -3,10 +3,13 @@ package com.healconnect.controller;
 import com.healconnect.model.BaseEntity;
 import com.healconnect.service.GenericService;
 
+import jakarta.validation.Valid;
+
 import java.lang.reflect.InvocationTargetException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 public abstract class GenericController<T extends BaseEntity> {
@@ -36,13 +39,20 @@ public abstract class GenericController<T extends BaseEntity> {
 	}
 
 	@GetMapping("/new")
-	public String showCreateForm(Model model) throws Exception {
-		model.addAttribute("item", getEntityInstance());
+	public String showCreateForm(Model model){
+		try {
+			model.addAttribute("item", getEntityInstance());
+		} catch (Exception e) {
+			return "redirect:/" + className;
+		}
 		return className + "/create";
 	}
 
 	@PostMapping
-	public String create(@ModelAttribute("item") T item) {
+	public String create(@Valid @ModelAttribute("item") T item, BindingResult result) {
+		if (result.hasErrors()) {
+			return className + "/create";
+		}
 		service.save(item);
 		return "redirect:/" + className + "/" + item.getId();
 	}
@@ -56,7 +66,10 @@ public abstract class GenericController<T extends BaseEntity> {
 	}
 
 	@PostMapping("/{id}")
-	public String update(@PathVariable Long id, @ModelAttribute("item") T item) {
+	public String update(@Valid @ModelAttribute("item") T item, BindingResult result, @PathVariable Long id) {
+		if (result.hasErrors()) {
+			return className + "/edit";
+		}
 		service.save(item);
 		return "redirect:/" + className + "/" + id;
 	}

@@ -19,14 +19,14 @@ public class Appointment implements BaseEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-	@NotNull
-    private LocalDate date;
-	
-	@NotNull
-    private LocalTime time;
-	
-	@NotNull
-    private LocalDate bookingDate;
+	@NotNull(message = "{appointment.date.notnull}")
+	private LocalDate date;
+
+	@NotNull(message = "{appointment.time.notnull}")
+	private LocalTime time;
+
+	@NotNull(message = "{appointment.bookingDate.notnull}")
+	private LocalDate bookingDate;
 
     @ManyToOne
     @JoinColumn(name = "patient_id")

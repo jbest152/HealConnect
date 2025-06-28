@@ -15,11 +15,11 @@ public class Medication implements BaseEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank
-    private String name;
-	
-	@NotBlank
-    private String description;
+	@NotBlank(message = "{medication.name.notblank}")
+	private String name;
+
+	@NotBlank(message = "{medication.description.notblank}")
+	private String description;
 	
     private String imageUrl;
     

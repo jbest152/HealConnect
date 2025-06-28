@@ -19,11 +19,11 @@ public class Prescription implements BaseEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotNull
-    private LocalDate date;
-	
-	@NotBlank
-    private String description;
+	@NotNull(message = "{prescription.date.notnull}")
+	private LocalDate date;
+
+	@NotBlank(message = "{prescription.description.notblank}")
+	private String description;
 
     @ManyToOne
     @JoinColumn(name = "medication_id")
