@@ -1,16 +1,15 @@
 package com.healconnect.service;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
+
 import com.healconnect.model.BaseEntity;
-import com.healconnect.repository.GenericRepository;
 
 public class GenericService<T extends BaseEntity, ID> {
 
-    protected final GenericRepository<T, ID> repository;
-
-    public GenericService(GenericRepository<T, ID> repository) {
-        this.repository = repository;
-    }
+	@Autowired
+    protected CrudRepository<T, ID> repository;
 
     public Iterable<T> findAll() {
         return repository.findAll();

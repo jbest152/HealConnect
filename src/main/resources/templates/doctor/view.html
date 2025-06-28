@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Dettagli Dottore</title>
+</head>
+<body>
+    <h1>Dettagli Dottore</h1>
+
+    <div>
+        <strong>ID:</strong> <span th:text="${doctor.id}"></span>
+    </div>
+    <div>
+        <strong>Specializzazione:</strong> <span th:text="${doctor.specialty}"></span>
+    </div>
+
+
+    <a th:href="@{/doctor}">← Torna alla lista</a>
+</body>
+</html>
