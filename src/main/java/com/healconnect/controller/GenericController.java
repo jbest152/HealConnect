@@ -13,7 +13,7 @@ public abstract class GenericController<T extends BaseEntity> {
 
 	@Autowired
 	protected GenericService<T, Long> service;
-	protected final String className;
+	private final String className;
 	private final Class<T> clazz;
 
 	public GenericController(Class<T> clazz) {
@@ -68,7 +68,7 @@ public abstract class GenericController<T extends BaseEntity> {
 		return "redirect:/" + className;
 	}
 
-	protected T getEntityInstance() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	private T getEntityInstance() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		return clazz.getDeclaredConstructor().newInstance();
 	}
 }
