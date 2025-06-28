@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>HealConnect - Registrazione</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <header class="login-header">
+        <a href="/"><img src="/images/logo-siw.png" alt="Logo HealConnect" class="logo-small"></a>
+    </header>
+
+    <main class="login-container">
+        <h1>Crea un nuovo account</h1>
+
+        <form th:action="@{/register}" method="POST" class="login-form">
+            <label>
+                Nome:
+                <input type="text" placeholder="Mario" required th:field="${user.name}" />
+                <span class="error-message" th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}"></span>
+            </label>
+
+            <label>
+                Cognome:
+                <input type="text" placeholder="Rossi" required th:field="${user.surname}" />
+                <span class="error-message" th:if="${#fields.hasErrors('user.surname')}" th:errors="${user.surname}"></span>
+            </label>
+
+            <label>
+                Email:
+                <input type="email" placeholder="mario.rossi@email.com" required th:field="${user.email}" />
+                <span class="error-message" th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}"></span>
+            </label>
+
+            <label>
+                Data di nascita:
+                <input type="date" required th:field="${user.birth}" />
+                <span class="error-message" th:if="${#fields.hasErrors('user.birth')}" th:errors="*{user.birth}"></span>
+            </label>
+
+            <label>
+                Username:
+                <input type="text" placeholder="username" required th:field="${credentials.username}" />
+                <span class="error-message" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}"></span>
+            </label>
+
+            <label>
+                Password:
+                <input type="password" placeholder="password" required th:field="${credentials.passwordHash}" />
+                <span class="error-message" th:if="${#fields.hasErrors('credentials.passwordHash')}" th:errors="${credentials.passwordHash}"></span>
+            </label>
+
+            <button type="submit">Registra</button>
+        </form>
+
+        <p class="register-link">
+            Hai già un account? <a href="/login">Accedi</a>
+        </p>
+    </main>
+</body>
+</html>
