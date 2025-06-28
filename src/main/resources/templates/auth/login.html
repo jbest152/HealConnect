@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>HealConnect - Login</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <header class="header-home">
+        <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo">
+    </header>
+
+    <main class="login-container">
+        <h1>Accedi al tuo account</h1>
+
+        <form th:action="@{/login}" method="POST" class="login-form">
+            <label>
+                Username:
+                <input name="username" type="text" required />
+            </label>
+
+            <label>
+                Password:
+                <input name="password" type="password" required />
+            </label>
+
+            <p class="error-message" th:if="${param.error != null}">
+                ⚠️ Username o password errati
+            </p>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="register-link">
+            Non hai un account? <a th:href="@{/register}">Registrati</a>
+        </p>
+    </main>
+</body>
+</html>

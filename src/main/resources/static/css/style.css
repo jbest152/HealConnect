@@ -106,3 +106,79 @@ footer {
     font-size: 0.9rem;
     color: #007096;
 }
+
+/* Contenitore login */
+.login-container {
+    max-width: 400px;
+    margin: 150px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 96, 158, 0.2);
+    text-align: center;
+}
+
+.login-container h1 {
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    color: #01579b;
+}
+
+/* Form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-form label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1rem;
+    color: #003366;
+}
+
+.login-form input {
+    padding: 8px 12px;
+    width: 100%;
+    border: 1px solid #b0cce8;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+
+.login-form button {
+    padding: 10px 20px;
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #0277bd;
+}
+
+/* Error */
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+}
+
+/* Registrazione */
+.register-link {
+    margin-top: 20px;
+    font-size: 0.95rem;
+}
+
+.register-link a {
+    color: #0288d1;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
