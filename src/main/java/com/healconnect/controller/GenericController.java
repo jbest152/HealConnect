@@ -1,6 +1,7 @@
 package com.healconnect.controller;
 
 import com.healconnect.model.BaseEntity;
+import com.healconnect.model.Role;
 import com.healconnect.service.GenericService;
 
 import jakarta.validation.Valid;
@@ -8,6 +9,7 @@ import jakarta.validation.Valid;
 import java.lang.reflect.InvocationTargetException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +40,7 @@ public abstract class GenericController<T extends BaseEntity> {
 		return className + "/view";
 	}
 
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/new")
 	public String showCreateForm(Model model){
 		try {
@@ -47,7 +50,8 @@ public abstract class GenericController<T extends BaseEntity> {
 		}
 		return className + "/create";
 	}
-
+	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping
 	public String create(@Valid @ModelAttribute("item") T item, BindingResult result) {
 		if (result.hasErrors()) {
@@ -57,6 +61,7 @@ public abstract class GenericController<T extends BaseEntity> {
 		return "redirect:/" + className + "/" + item.getId();
 	}
 
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/{id}/edit")
 	public String showEditForm(@PathVariable Long id, Model model) {
 		T item = service.findById(id);
@@ -65,6 +70,7 @@ public abstract class GenericController<T extends BaseEntity> {
 		return className + "/edit";
 	}
 
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/{id}")
 	public String update(@Valid @ModelAttribute("item") T item, BindingResult result, @PathVariable Long id) {
 		if (result.hasErrors()) {

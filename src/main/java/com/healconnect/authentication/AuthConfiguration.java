@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,6 +19,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class AuthConfiguration {
 
     @Bean
@@ -49,9 +51,12 @@ public class AuthConfiguration {
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers(HttpMethod.GET, "/", "/home", "/register", "/login", "/css/**", "/images/**", "/favicon.ico", "/js/**", "/webjars/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/doctor/**", "/patient/**", "/medication/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/doctor/**", "/patient/**", "/medication/**").permitAll()
+                
                 .requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
+                
+                .requestMatchers(HttpMethod.GET, "/doctor/**", "/patient/**", "/medication/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/doctor/**", "/patient/**", "/medication/**").hasAuthority(Role.ADMIN.toString())
+                
                 .requestMatchers(HttpMethod.GET, "/appointment/**", "/medical-record/**", "/prescription/**").hasAnyAuthority(Role.DOCTOR.toString(), Role.PATIENT.toString())
                 .requestMatchers("/admin/**").hasAuthority(Role.ADMIN.toString())
                 .anyRequest().authenticated()
