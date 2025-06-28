@@ -15,41 +15,51 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class AuthController {
 
-    @Autowired
-    private CredentialsService credentialsService;
+	@Autowired
+	private CredentialsService credentialsService;
 
-    @GetMapping("/register")
-    public String showRegisterForm(Model model) {
-        model.addAttribute("user", new User());
-        model.addAttribute("credentials", new Credentials());
-        model.addAttribute("roles", Role.values());
-        return "auth/register";
-    }
+	@GetMapping({"/register", "/register/{role}"})
+	public String showRegisterForm(@PathVariable(required = false) Role role, Model model) {
+		model.addAttribute("user", new User());
+		model.addAttribute("credentials", new Credentials());
 
-    @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("user") User user,
-                           BindingResult userBindingResult,
-                           @Valid @ModelAttribute("credentials") Credentials credentials,
-                           BindingResult credentialsBindingResult,
-                           Model model) {
+		if (role != null) 
+			model.addAttribute("roles", new Role[]{role});
+		else 
+			model.addAttribute("roles", Role.values());
 
-        if (userBindingResult.hasErrors() || credentialsBindingResult.hasErrors()) {
-            return "auth/register";
-        }
+		return "auth/register";
+	}
 
-        credentials.setUser(user);
-        credentialsService.save(credentials);
+	@PostMapping("/register")
+	public String register(@Valid @ModelAttribute("user") User user,
+			BindingResult userBindingResult,
+			@Valid @ModelAttribute("credentials") Credentials credentials,
+			BindingResult credentialsBindingResult,
+			Model model) {
 
-        return "redirect:/login";
-    }
+		if (userBindingResult.hasErrors() || credentialsBindingResult.hasErrors()) 
+			return "auth/register";
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "auth/login";
-    }
+		credentials.setUser(user);
+		credentialsService.save(credentials);
 
-    @GetMapping("/logout-success")
-    public String logoutPage() {
-        return "auth/logout";
-    }
+		System.out.println("redirect:/" + credentials.getRole().name().toLowerCase() + "/complete-registration/" + user.getId());
+		return "redirect:/" + credentials.getRole().name().toLowerCase() + "/complete-registration/" + user.getId() ;
+	}
+	
+	@GetMapping("admin/complete-registration/{userId}")
+	public String registerAdmin(@PathVariable Long userId) {
+		return "redirect:/login";
+	}
+
+	@GetMapping("/login")
+	public String loginPage() {
+		return "auth/login";
+	}
+
+	@GetMapping("/logout-success")
+	public String logoutPage() {
+		return "auth/logout";
+	}
 }

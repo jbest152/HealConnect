@@ -50,7 +50,7 @@ public class AuthConfiguration {
         http
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(requests -> requests
-                .requestMatchers(HttpMethod.GET, "/", "/home", "/register", "/login", "/css/**", "/images/**", "/favicon.ico", "/js/**", "/webjars/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/", "/home", "/register/**", "/login", "/css/**", "/images/**", "/favicon.ico", "/js/**", "/webjars/**").permitAll()
                 
                 .requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
                 
