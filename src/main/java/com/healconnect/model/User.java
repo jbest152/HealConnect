@@ -33,10 +33,6 @@ public class User implements BaseEntity{
 
 	@NotBlank(message = "{user.email.notblank}")
 	private String email;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles = new HashSet<>();
     
     @NotNull
     private LocalDate birth;
@@ -81,17 +77,9 @@ public class User implements BaseEntity{
 		this.email = email;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, id, name, roles, surname);
+		return Objects.hash(email, id, name, surname);
 	}
 
 	@Override
@@ -105,6 +93,6 @@ public class User implements BaseEntity{
 		User other = (User) obj;
 		return Objects.equals(email, other.email)
 				&& Objects.equals(id, other.id) && Objects.equals(name, other.name)
-				&& Objects.equals(roles, other.roles) && Objects.equals(surname, other.surname);
+				&& Objects.equals(surname, other.surname);
 	}
 }

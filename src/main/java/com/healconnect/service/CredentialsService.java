@@ -18,7 +18,7 @@ public class CredentialsService extends GenericService<Credentials, Long> {
 	
 	@Override
 	public Credentials save(Credentials credentials) {
-		credentials.setPasswordHash(passwordEncoder.encode(credentials.getPasswordHash()));
+		credentials.setPassword(passwordEncoder.encode(credentials.getPassword()));
 		return repository.save(credentials);
 	}
 	

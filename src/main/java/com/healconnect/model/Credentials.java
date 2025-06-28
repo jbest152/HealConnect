@@ -4,12 +4,15 @@ import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Credentials implements BaseEntity {
@@ -21,13 +24,23 @@ public class Credentials implements BaseEntity {
 	@NotBlank(message = "{credentials.username.notblank}")
 	private String username;
 
-	@NotBlank(message = "{credentials.passwordHash.notblank}")
-	private String passwordHash;
+	@NotBlank(message = "{credentials.password.notblank}")
+	private String password;
     
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
     
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -40,11 +53,11 @@ public class Credentials implements BaseEntity {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPasswordHash() {
-		return passwordHash;
+	public String getPassword() {
+		return password;
 	}
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public User getUser() {
 		return user;
@@ -54,7 +67,7 @@ public class Credentials implements BaseEntity {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, passwordHash, username);
+		return Objects.hash(id, password, role, user, username);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -65,7 +78,7 @@ public class Credentials implements BaseEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		Credentials other = (Credentials) obj;
-		return Objects.equals(id, other.id) && Objects.equals(passwordHash, other.passwordHash)
-				&& Objects.equals(username, other.username);
+		return Objects.equals(id, other.id) && Objects.equals(password, other.password) && role == other.role
+				&& Objects.equals(user, other.user) && Objects.equals(username, other.username);
 	} 
 }

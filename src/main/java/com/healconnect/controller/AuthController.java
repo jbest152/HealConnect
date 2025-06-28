@@ -1,6 +1,7 @@
 package com.healconnect.controller;
 
 import com.healconnect.model.Credentials;
+import com.healconnect.model.Role;
 import com.healconnect.model.User;
 import com.healconnect.service.CredentialsService;
 
@@ -21,6 +22,7 @@ public class AuthController {
     public String showRegisterForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("credentials", new Credentials());
+        model.addAttribute("roles", Role.values());
         return "auth/register";
     }
 
