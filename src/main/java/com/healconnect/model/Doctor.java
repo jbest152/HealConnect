@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Doctor implements BaseEntity{
@@ -18,6 +19,7 @@ public class Doctor implements BaseEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+	@NotBlank
     private String specialty;
 
     @OneToOne(fetch = FetchType.LAZY)

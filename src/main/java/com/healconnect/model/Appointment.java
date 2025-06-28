@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Appointment implements BaseEntity{
@@ -18,8 +19,13 @@ public class Appointment implements BaseEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+	@NotNull
     private LocalDate date;
+	
+	@NotNull
     private LocalTime time;
+	
+	@NotNull
     private LocalDate bookingDate;
 
     @ManyToOne
