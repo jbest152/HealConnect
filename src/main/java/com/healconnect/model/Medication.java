@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Medication implements BaseEntity{
@@ -14,8 +15,12 @@ public class Medication implements BaseEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-    private String name;
-    private String description;
+	@NotBlank(message = "{medication.name.notblank}")
+	private String name;
+
+	@NotBlank(message = "{medication.description.notblank}")
+	private String description;
+	
     private String imageUrl;
     
 	public Long getId() {

@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Credentials implements BaseEntity {
@@ -17,8 +18,11 @@ public class Credentials implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String username;
-    private String passwordHash;
+	@NotBlank(message = "{credentials.username.notblank}")
+	private String username;
+
+	@NotBlank(message = "{credentials.passwordHash.notblank}")
+	private String passwordHash;
     
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

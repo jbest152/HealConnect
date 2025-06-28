@@ -23,8 +23,8 @@
                 <td th:text="${doctor.specialty}">Cardiologia</td>
                 <td>
                     <a th:href="@{'/doctor/' + ${doctor.id}}">🔍 Dettagli</a> |
-                    <a th:href="@{'/doctor/edit/' + ${doctor.id}}">✏️ Modifica</a> |
-                    <form th:action="@{'/doctor/delete/' + ${doctor.id}}" method="post" th:object="${doctor}" style="display:inline;">
+                    <a th:href="@{'/doctor/' + ${doctor.id} + '/edit'}">✏️ Modifica</a> |
+                    <form th:action="@{'/doctor/' + ${doctor.id} + '/delete'}" method="post" th:object="${doctor}" style="display:inline;">
                         <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo dottore?')">🗑️ Elimina</button>
                     </form>
                 </td>

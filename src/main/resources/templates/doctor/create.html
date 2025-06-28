@@ -7,24 +7,17 @@
 <body>
     <h1>Nuovo Dottore</h1>
 
-    <form th:action="@{/doctor}" th:object="${item}" method="post">
-        <div>
-            <label>Specializzazione:</label>
-            <input type="text" th:field="*{specialty}" required />
-        </div>
+	<form th:action="@{/doctor}" th:object="${item}" method="post">
+	    <div>
+	        <label>Specializzazione:</label>
+	        <input type="text" th:field="*{specialty}"/>
+	        <div th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}"></div>
+	    </div>
 
-        <!-- Se vuoi collegare anche l'utente -->
-        <!--
-        <div>
-            <label>User ID:</label>
-            <input type="number" th:field="*{user.id}" />
-        </div>
-        -->
-
-        <div>
-            <button type="submit">Salva</button>
-        </div>
-    </form>
+	    <div>
+	        <button type="submit">Salva</button>
+	    </div>
+	</form>
 
     <a th:href="@{/doctor}">← Torna alla lista</a>
 </body>

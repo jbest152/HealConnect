@@ -9,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Prescription implements BaseEntity{
@@ -17,8 +19,11 @@ public class Prescription implements BaseEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-    private LocalDate date;
-    private String description;
+	@NotNull(message = "{prescription.date.notnull}")
+	private LocalDate date;
+
+	@NotBlank(message = "{prescription.description.notblank}")
+	private String description;
 
     @ManyToOne
     @JoinColumn(name = "medication_id")

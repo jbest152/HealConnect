@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
@@ -25,9 +26,14 @@ public class User implements BaseEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
-    private String surname;
-    private String email;
+	@NotBlank(message = "{user.name.notblank}")
+	private String name;
+
+	@NotBlank(message = "{user.surname.notblank}")
+	private String surname;
+
+	@NotBlank(message = "{user.email.notblank}")
+	private String email;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
