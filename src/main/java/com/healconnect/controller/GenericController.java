@@ -2,17 +2,23 @@ package com.healconnect.controller;
 
 import com.healconnect.model.BaseEntity;
 import com.healconnect.service.GenericService;
+
+import java.lang.reflect.InvocationTargetException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 public abstract class GenericController<T extends BaseEntity> {
 
-	protected final GenericService<T, Long> service;
+	@Autowired
+	protected GenericService<T, Long> service;
 	protected final String className;
+	private final Class<T> clazz;
 
-	public GenericController(GenericService<T, Long> service, String className) {
-		this.service = service;
-		this.className = className;
+	public GenericController(Class<T> clazz) {
+		this.clazz = clazz;
+		this.className = this.clazz.getSimpleName().toLowerCase();
 	}
 
 	@GetMapping
@@ -62,6 +68,8 @@ public abstract class GenericController<T extends BaseEntity> {
 		return "redirect:/" + className;
 	}
 
-	protected abstract T getEntityInstance();
+	protected T getEntityInstance() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		return clazz.getDeclaredConstructor().newInstance();
+	}
 }
 

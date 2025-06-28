@@ -10,13 +10,7 @@ import com.healconnect.service.DoctorService;
 @RequestMapping("/doctor")
 public class DoctorController extends GenericController<Doctor> {
 
-	public DoctorController(DoctorService service) {
-		super(service, "doctor");
+	public DoctorController() {
+		super(Doctor.class);
 	}
-
-	@Override
-	protected Doctor getEntityInstance() {
-		return new Doctor();
-	}
-
 }
