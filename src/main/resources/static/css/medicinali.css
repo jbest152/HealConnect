@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+   
 }
 
 /* Header */
@@ -22,7 +22,7 @@ body {
     display: flex;
     align-items: center;
     padding: 0 40px;
-    background-color: #2e7d32;
+    background-color: rgb(68, 120, 63);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
@@ -43,7 +43,7 @@ body {
 }
 
 .nav-link {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: #c8f7c5;
     text-decoration: none;
     border: 1px solid transparent;
@@ -78,11 +78,14 @@ body {
     z-index: 1;
 }
 
-/* Main content */
+
 .record-container {
-    padding: 40px 20px;
+	
+	padding: 0px 20px 40px 20px; 
+	margin-top:  0;
     max-width: 800px;
-    margin: auto;
+	margin:auto;
+
 }
 
 .patient-info, .prescriptions {
@@ -91,15 +94,16 @@ body {
     box-shadow: 0 4px 8px rgba(0, 96, 58, 0.2);
     padding: 30px;
     margin-bottom: 30px;
+	font-size: 1.4rem;
 }
 
 .patient-info h2, .prescriptions h2 {
     color: #2e7d32;
     margin-bottom: 20px;
-    font-size: 1.5rem;
+    font-size: 1.9rem;
 }
 
-/* Prescriptions */
+
 .prescription-list {
     list-style: none;
     padding: 0;
@@ -126,6 +130,50 @@ body {
     font-size: 1.2rem;
 }
 
+/*MEDICINE*/
+.medication-form .form-group {
+    margin-bottom: 20px;
+}
+
+.medication-form label {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #2e7d32;
+}
+
+.medication-form input[type="text"],
+.medication-form textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #a5d6a7;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #1b4f1e;
+    background-color: #f1fff1;
+    transition: border-color 0.3s ease;
+}
+
+.medication-form input[type="text"]:focus,
+.medication-form textarea:focus {
+    border-color: #388e3c;
+    outline: none;
+}
+
+.submit-button {
+    background-color: #388e3c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+	text-decoration: none;
+}
+
+.submit-button:hover {
+    background-color: #2e7d32;
+}
 /* Footer */
 footer {
     background-color: #e8f5e9;
