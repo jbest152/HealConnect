@@ -7,17 +7,17 @@
 </head>
 <body>
 
-    
-    <header>
-        <div class="header-main">
-            <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo">
-            <h1 class="titolo-home">Account Paziente</h1>
-            <!--<a href="/logout" class="login-link">Logout</a>-->
-			<a href="/login" class="login-link">Login</a>
-			<a href="/homepage" class="login-link">Home</a>
-			<a href="/doctor/list" class="login-link">Dottori</a>
-        </div>
-    </header>
+
+	  <header class="header-main">
+	    <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo">
+	    <h1 class="titolo-home">Benvenuto in <span class="highlight">HealConnect</span></h1>
+	    <nav class="nav">
+	      <a href="/" class="nav-link">Home</a>
+	      <a href="/doctor" class="nav-link">Dottori</a>
+	      <a th:href="@{'/medical-record/' + ${patient.medicalRecord.id}}" class="nav-link">Cartella Medica</a>
+	      <a href="/login" class="nav-link">Login</a>
+	    </nav>
+	  </header>
 
 
     <main class="menu">
