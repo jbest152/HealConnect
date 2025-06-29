@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.healconnect.model.Appointment;
+import com.healconnect.model.Doctor;
+import com.healconnect.model.Patient;
 
 @Controller
 @RequestMapping("/appointment")
@@ -22,7 +24,11 @@ public class AppointmentController extends GenericController<Appointment> {
 	@PreAuthorize("hasAuthority('PATIENT') or hasAuthority('DOCTOR')")
 	@GetMapping("/new")
 	public String showCreateForm(Model model){
-		return super.showCreateForm(model);
+		  Appointment item = new Appointment();
+		    item.setPatient(new Patient());
+		    item.setDoctor(new Doctor());
+		    model.addAttribute("item", item);
+		    return "appointment/create";
 	}
 	
 	@Override
