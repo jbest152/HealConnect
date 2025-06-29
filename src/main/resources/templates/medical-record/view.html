@@ -32,11 +32,11 @@
         <section class="prescription-list">
             <h2>Prescrizioni Mediche</h2>
 
-            <div th:if="${#lists.isEmpty(medical-record.prescriptions)}">
+            <div th:if="${medicalRecord.prescriptions.isEmpty()}">
                 <p>Nessuna prescrizione presente.</p>
             </div>
 
-            <div th:each="prescription : ${medical-record.prescriptions}" class="prescription-card">
+            <div th:each="prescription : ${medicalRecord.prescriptions}" class="prescription-card">
                 <div class="prescription-header">
                     <h3 class="med-name" th:text="${prescription.medication.name}"></h3>
                     <span class="prescription-date" th:text="${#temporals.format(prescription.date, 'dd/MM/yyyy')}"></span>

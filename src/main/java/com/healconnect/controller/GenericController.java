@@ -1,7 +1,6 @@
 package com.healconnect.controller;
 
 import com.healconnect.model.BaseEntity;
-import com.healconnect.model.Role;
 import com.healconnect.service.GenericService;
 
 import jakarta.validation.Valid;
