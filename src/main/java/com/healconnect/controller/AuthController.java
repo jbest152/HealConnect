@@ -23,8 +23,6 @@ public class AuthController {
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
 
-		if (role == Role.ADMIN)
-			return "redirect:/login";
 		if (role != null) 
 			model.addAttribute("roles", new Role[]{role});
 		else 
@@ -46,7 +44,9 @@ public class AuthController {
 		credentials.setUser(user);
 		credentialsService.save(credentials);
 
-		System.out.println("redirect:/" + credentials.getRole().name().toLowerCase() + "/complete-registration/" + user.getId());
+		if (credentials.getRole() == Role.ADMIN)
+			return "redirect:/login";
+
 		return "redirect:/" + credentials.getRole().name().toLowerCase() + "/complete-registration/" + user.getId() ;
 	}
 
