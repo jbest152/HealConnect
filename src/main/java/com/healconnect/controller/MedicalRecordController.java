@@ -23,6 +23,7 @@ public class MedicalRecordController{
 	@GetMapping("/{id}")
 	public String view(@PathVariable Long id, Model model) {
 
+		model.addAttribute("patient", patientService.findById(id));
 		model.addAttribute("medical-record", service.findById(id));
 		return "medical-record" + "/view";
 	}
@@ -30,7 +31,9 @@ public class MedicalRecordController{
 	@GetMapping("/patient/{id}")
 	public String viewByPatient(@PathVariable Long id, Model model) {
 
+		model.addAttribute("patient", patientService.findById(id));
 		model.addAttribute("medical-record", patientService.findById(id).getMedicalRecord());
 		return "medical-record" + "/view";
 	}
+
 }
