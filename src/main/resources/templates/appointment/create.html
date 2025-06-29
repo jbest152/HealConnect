@@ -36,15 +36,27 @@
         </div>
 
 		<div>
-		    <label for="patient">Paziente:</label>
-		    <input type="text" id="patient" th:field="*{patient.user.name}" placeholder="Nome Paziente" required />
-		    <div th:if="${#fields.hasErrors('patient.user.name')}" th:errors="*{patient.user.name}"></div>
+		  <label for="patient">Paziente:</label>
+		  <select id="patient" th:field="*{patient.id}" required>
+		    <option value="" disabled selected>Seleziona un paziente</option>
+		    <option th:each="patient : ${patients}" 
+		            th:value="${patient.id}" 
+		            th:text="${patient.user.name} + ' ' + ${patient.user.surname}">
+		    </option>
+		  </select>
+		  <div th:if="${#fields.hasErrors('patient')}" th:errors="*{patient}"></div>
 		</div>
 
 		<div>
-		    <label for="doctor">Dottore (Specialità):</label>
-		    <input type="text" id="doctor" th:field="*{doctor.specialty}" placeholder="Specialità Dottore" required />
-		    <div th:if="${#fields.hasErrors('doctor.specialty')}" th:errors="*{doctor.specialty}"></div>
+		  <label for="doctor">Dottore (Specialità):</label>
+		  <select id="doctor" th:field="*{doctor.id}" required>
+		    <option value="" disabled selected>Seleziona un dottore</option>
+		    <option th:each="doctor : ${doctors}" 
+		            th:value="${doctor.id}" 
+		            th:text="${doctor.user.name} + ' ' + ${doctor.user.surname} + ' (' + ${doctor.specialty} + ')'">
+		    </option>
+		  </select>
+		  <div th:if="${#fields.hasErrors('doctor')}" th:errors="*{doctor}"></div>
 		</div>
 
         <div>

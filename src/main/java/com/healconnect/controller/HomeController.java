@@ -32,6 +32,11 @@ public class HomeController {
         return "home";
     }
 	
+	@GetMapping("/home")
+	public String home() {
+		return "redirect:/";
+	}
+	
 	@GetMapping("/success")
 	public String home(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		Credentials credentials = credentialsService.findByUsername(userDetails.getUsername());
