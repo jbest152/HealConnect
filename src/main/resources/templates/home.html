@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage HealConnect</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage HealConnect</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<header class="header-main">
-	    <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo">
-	    <h1 class="titolo-home">Benvenuto in <span class="highlight">HealConnect</span></h1>
-		<a href="/login" class="login-link">Login</a>
-	</header>
+  <header class="header-main">
+    <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo">
+    <h1 class="titolo-home">Benvenuto in <span class="highlight">HealConnect</span></h1>
+    <nav class="nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/doctor" class="nav-link">Dottori</a>
+      <a href="/patient" class="nav-link">Profilo</a>
+      <a href="/login" class="nav-link">Login</a>
+    </nav>
+  </header>
 
-    <main>
-        <nav class="menu">
-            <ul>
-                <li><a th:href="@{/doctor}">👨‍⚕️ Visualizza tutti i Dottori </a></li>
-				<li><a th:href="@{/appointment}">📅 Visualizza i tuoi appuntamenti </a></li>
-				<li><a th:href="@{/medical-record}">📁 Visualizza la tua cartella medica </a></li>
-				<li><a th:href="@{/patient}">👤 Visualizza il tuo account </a></li>
-            </ul>
-        </nav>
-    </main>
+  <main>
+    <nav class="menu">
+      <ul>
+        <li><a th:href="@{/doctor}">👨‍⚕️ Visualizza tutti i Dottori</a></li>
+        <li><a th:href="@{/appointment}">📅 Visualizza i tuoi appuntamenti</a></li>
+        <li><a th:href="@{/medical-record}">📁 Visualizza la tua cartella medica</a></li>
+        <li><a th:href="@{/patient}">👤 Visualizza il tuo account</a></li>
+      </ul>
+    </nav>
+  </main>
 
-    <footer>
-        <p>&copy; 2025 HealConnect - Tutti i diritti riservati</p>
-    </footer>
+  <footer>
+    <p>&copy; 2025 HealConnect - Tutti i diritti riservati</p>
+  </footer>
 </body>
 </html>

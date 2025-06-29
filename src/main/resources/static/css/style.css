@@ -29,11 +29,44 @@ header {
 }
 
 .header-main {
-    position: relative;
-    height: 220px;
+	   position: relative;
+	    height: 220px;
+	    display: flex;
+	    align-items: center;
+	    padding: 0 40px;
+	    background-color: #0277bd;
+	    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.header-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 0 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.nav {
+	    margin-left: auto;
+	    display: flex;
+	    gap: 20px;
+	    z-index: 2;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    color: #b2ebf2;
+    text-decoration: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #0288d1;
+    color: white;
+    border-color: white;
 }
 
 .logo {
@@ -41,6 +74,8 @@ header {
     width: auto;
     position: absolute;
     left: 10px;
+	top: -40px;
+	z-index: 0;
 }
 
 .login-link {
@@ -59,10 +94,14 @@ header {
 }
 
 .titolo-home {
-    flex: 1;
-    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 2.2rem;
     color: rgb(12, 12, 126);
+    text-align: center;
+    white-space: nowrap;
+    z-index: 1;
 }
 
 /* Main content */
