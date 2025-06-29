@@ -48,4 +48,20 @@ public class HomeController {
 		}
 	    return "home";
 	}
+	
+	@GetMapping("/profile")
+	public String profile(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		Credentials credentials = credentialsService.findByUsername(userDetails.getUsername());
+		User user = credentials.getUser();
+		long id = 0;
+		switch (credentials.getRole()) {
+		case ADMIN:
+			return "redirect:/";
+		case DOCTOR:
+			id = doctorService.findByUser(user).getId();
+		case PATIENT:
+			id = patientService.findByUser(user).getId();
+		}
+	    return "redirect:/" + credentials.getRole().toString().toLowerCase() + "/" + id;
+	}
 }
