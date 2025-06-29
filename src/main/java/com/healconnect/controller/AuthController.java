@@ -23,6 +23,8 @@ public class AuthController {
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
 
+		if (role == Role.ADMIN)
+			return "redirect:/login";
 		if (role != null) 
 			model.addAttribute("roles", new Role[]{role});
 		else 
@@ -46,11 +48,6 @@ public class AuthController {
 
 		System.out.println("redirect:/" + credentials.getRole().name().toLowerCase() + "/complete-registration/" + user.getId());
 		return "redirect:/" + credentials.getRole().name().toLowerCase() + "/complete-registration/" + user.getId() ;
-	}
-	
-	@GetMapping("admin/complete-registration/{userId}")
-	public String registerAdmin(@PathVariable Long userId) {
-		return "redirect:/login";
 	}
 
 	@GetMapping("/login")
