@@ -38,7 +38,7 @@
             <li>
               <strong>Data:</strong> <span th:text="${appointment.date}"></span><br />
                 <strong>Orario:</strong> <span th:text="${appointment.time}"></span><br />
-                 <!--<strong>Medico:</strong> 
+                 <strong>Medico:</strong> 
 				<th:block th:if="${appointment.doctor != null and appointment.doctor.user != null}">
 				    <span th:text="${appointment.doctor.user.name + ' ' + appointment.doctor.user.surname}"></span>
 				</th:block>
@@ -50,7 +50,7 @@
                 <a th:href="@{'/appointment/' + ${appointment.id} + '/edit'}">✏️ Modifica</a> |
                 <form th:action="@{'/appointment/' + ${appointment.id} + '/delete'}" method="post" th:object="${appointment}" style="display:inline;">
                     <button type="submit" onclick="return confirm('Vuoi davvero cancellare questo appuntamento?')">🗑️ Elimina</button>
-                </form>--> 
+                </form>
             </li>
         </ul>
     </main>

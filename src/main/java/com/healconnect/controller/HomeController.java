@@ -12,7 +12,6 @@ import com.healconnect.model.User;
 import com.healconnect.service.CredentialsService;
 import com.healconnect.service.DoctorService;
 import com.healconnect.service.PatientService;
-import com.healconnect.service.UserService;
 
 @Controller
 public class HomeController {

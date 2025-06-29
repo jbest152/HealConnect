@@ -26,6 +26,7 @@ public class PatientController extends GenericController<Patient>{
 		MedicalRecord medRecord = new MedicalRecord();
 		Patient patient = new Patient();
 		patient.setMedicalRecord(medRecord);
+		medRecord.setPatient(patient);
 		patient.setUser(userService.findById(userId));
 		super.service.save(patient);
 		return "redirect:/login";

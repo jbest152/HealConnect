@@ -23,7 +23,7 @@
             <ul>
                 <li><a th:href="@{/doctor}">👨‍⚕️ Visualizza tutti i Dottori </a></li>
 				<li><a th:href="@{/appointment}">📅 Visualizza i tuoi appuntamenti </a></li>
-				<li><a th:href="@{/medical-record}">📁 Visualizza la tua cartella medica </a></li>
+				<li><a th:href="@{'/medical-record/' + ${patient.medicalRecord.id}}">📁 Visualizza la tua cartella medica </a></li>
 				<li><a th:href="@{'/patient/' + ${patient.id}}">👤 Visualizza il tuo account </a></li>
             </ul>
         </nav>
