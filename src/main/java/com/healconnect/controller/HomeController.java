@@ -27,7 +27,9 @@ public class HomeController {
 	private PatientService patientService;
 	
 	@GetMapping("/")
-    public String home() {
+    public String home(@AuthenticationPrincipal UserDetails userDetails) {
+		if (userDetails != null)
+			return "redirect:/success";
         return "home";
     }
 	
@@ -43,7 +45,7 @@ public class HomeController {
 			return "home-doctor";
 		case PATIENT:
 			model.addAttribute("patient", patientService.findByUser(user));
-			return "home";
+			return "home-patient";
 		}
 	    return "home";
 	}
