@@ -8,14 +8,17 @@
 <body>
 
    
-    <header>
-        <div class="header-main">
-            <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo">
-            <h1 class="titolo-home">Lista Appuntamenti</h1>
-            <a href="/login" class="login-link">Login</a>
-        </div>
-    </header>
-
+	<header class="header-main">
+	       <img src="images/logo-healconnect.png" alt="Logo HealConnect" class="logo" />
+	       <div class="header-content">
+	           <h1 class="titolo-home">Cartella Medica del Paziente</h1>
+	           <nav class="nav">
+	               <a class="nav-link" th:href="@{/home}">Home</a>
+	               <a class="nav-link" th:href="@{/profile}">Profilo</a>
+	               <a class="nav-link" th:href="@{/logout}">Logout</a>
+	           </nav>
+	       </div>
+	   </header>
     <main class="menu">
         <ul>
             <li>
@@ -25,11 +28,11 @@
 
         <ul th:each="appointment : ${appointments}">
             <li>
-                <strong>ID:</strong> <span th:text="${appointment.id}">1</span><br />
-                <strong>Data:</strong> <span th:text="${appointment.date}">2025-07-01</span><br />
-                <strong>Orario:</strong> <span th:text="${appointment.time}">14:30</span><br />
-                <strong>Paziente:</strong> <span th:text="${appointment.patient.name}">Mario Rossi</span><br />
-                <strong>Dottore:</strong> <span th:text="${appointment.doctor.specialty}">Cardiologia</span><br /><br />
+                <strong>ID:</strong> <span th:text="${appointment.id}"></span><br />
+                <strong>Data:</strong> <span th:text="${appointment.date}"></span><br />
+                <strong>Orario:</strong> <span th:text="${appointment.time}"></span><br />
+                <strong>Paziente:</strong> <span th:text="${appointment.patient.name}"></span><br />
+                <strong>Dottore:</strong> <span th:text="${appointment.doctor.specialty}"></span><br /><br />
                 <a th:href="@{'/appointment/' + ${appointment.id}}">🔍 Dettagli</a> |
                 <a th:href="@{'/appointment/' + ${appointment.id} + '/edit'}">✏️ Modifica</a> |
                 <form th:action="@{'/appointment/' + ${appointment.id} + '/delete'}" method="post" th:object="${appointment}" style="display:inline;">
