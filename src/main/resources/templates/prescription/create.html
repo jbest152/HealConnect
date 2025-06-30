@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuova Prescrizione</title>
+    <link rel="stylesheet" href="@{/css/medicinali.css}"> 
+</head>
+<body>
+
+	<header class="header-main">
+		        <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo" />
+		        <div class="header-content">
+		            <h1 class="titolo-home">Crea ricetta medica</h1>
+		            <nav class="nav">
+		                <a class="nav-link" th:href="@{/home}">Home</a>
+		                <a class="nav-link" th:if="${user.credentials.role.name() != 'ADMIN'}" th:href="@{/profile}">Profilo</a>
+		                <a class="nav-link" th:href="@{/login}">Logout</a>
+		            </nav>
+		        </div>
+		    </header>
+
+    <main>
+		
+		<form th:action="@{/prescriptions/save}" method="POST" th:object="${prescription}">
+		    <h1 style="text-align: center; margin-bottom: 25px; color: #01579b;">Crea nuova prescrizione</h1>
+
+		    <div>
+		        <label for="date">Data:</label>
+		        <input type="date" id="date" th:field="*{date}" required>
+		    </div>
+
+		    <div>
+		        <label for="description">Descrizione:</label>
+		        <input type="text" id="description" th:field="*{description}" required>
+		    </div>
+
+		    <div>
+		        <label for="medication">Farmaco:</label>
+		        <select id="medication" th:field="*{medication}" required>
+		            <option value="">-- Seleziona un farmaco --</option>
+		            <option th:each="med : ${medications}"
+		                    th:value="${med.id}"
+		                    th:text="${med.name}">Farmaco</option>
+		        </select>
+		    </div>
+
+		    <div>
+		        <label for="doctor">Medico:</label>
+		        <select id="doctor" th:field="*{doctor}" required>
+		            <option value="">-- Seleziona un medico --</option>
+		            <option th:each="doc : ${doctors}"
+		                    th:value="${doc.id}"
+		                    th:text="${doc.user.name} + ' ' + ${doc.user.surname}">Medico</option>
+		        </select>
+		    </div>
+
+		    <div style="text-align: center;">
+		        <button type="submit">Salva Prescrizione</button>
+		    </div>
+		</form>
+
+        <div class="button-container">
+            <a href="/prescriptions" class="back-button">Torna alla lista</a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 HealConnect. Tutti i diritti riservati.
+    </footer>
+
+</body>
+</html>
