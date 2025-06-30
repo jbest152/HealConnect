@@ -36,10 +36,14 @@
 			        <input type="text" id="surname" name="surname" th:value="${item.user.surname}" required />
 			    </div>
 
-			    <div class="detail-row">
+				<input type="hidden" th:field="*{user}" />
+					        <input type="text" th:field="*{specialty}"/>
+					        <div th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}"></div>
+							
+			  <!-- <div class="detail-row">
 			        <label class="detail-label" for="specialty">🩺 Specializzazione:</label>
 			        <input type="text" id="specialty" name="specialty" th:value="${item.specialty}" required />
-			    </div>
+			    </div>--> 
 
 			    <div class="button-container">
 			        <button type="submit" class="action-button">Salva Modifiche</button>
