@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.healconnect.model.Doctor;
 import com.healconnect.model.Prescription;
 import com.healconnect.model.User;
 import com.healconnect.service.DoctorService;
@@ -49,6 +50,7 @@ public class PrescriptionController extends GenericController<Prescription>{
 		item.setDate(LocalDate.now());
 		model.addAttribute("item", item);
 		model.addAttribute("medications", medicationService.findAll());
+		model.addAttribute("doctors",new Doctor[] {doctorService.findByUser(user)});
 		return "prescription/create";
 	}
 	
