@@ -13,32 +13,46 @@
 	        <div class="header-content">
 	            <h1 class="titolo-home">Lista Dottori</h1>
 	            <nav class="nav">
-	                <a class="nav-link" th:href="@{/}">Home</a>
+	                <a class="nav-link" th:href="@{/home}">Home</a>
 	                <a class="nav-link" th:href="@{/profile}">Profilo</a>
-	                <a class="nav-link" th:href="@{/logout}">Logout</a>
+	                <a class="nav-link" th:href="@{/login}">Logout</a>
 	            </nav>
 	        </div>
 	    </header>
 
-    <main class="menu">
-        <ul>
-            <li>
-                <a th:href="@{/doctor/new}">➕ Crea nuovo dottore</a>
-            </li>
-        </ul>
+		<main class="menu">
+		    
+		    <ul th:if="${user.role == 'ADMIN'}">
+		        <li>
+		            <a th:href="@{/doctor/new}">➕ Crea nuovo dottore</a>
+		        </li>
+		    </ul>
 
-        <ul th:each="doctor : ${doctors}">
-            <li>
-                <strong>ID:</strong> <span th:text="${doctor.id}">1</span><br />
-                <strong>Specializzazione:</strong> <span th:text="${doctor.specialty}">Cardiologia</span><br /><br />
-                <a th:href="@{'/doctor/' + ${doctor.id}}">🔍 Dettagli</a> |
-                <a th:href="@{'/doctor/' + ${doctor.id} + '/edit'}">✏️ Modifica</a> |
-                <form th:action="@{'/doctor/' + ${doctor.id} + '/delete'}" method="post" th:object="${doctor}" style="display:inline;">
-                    <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo dottore?')">🗑️ Elimina</button>
-                </form>
-            </li>
-        </ul>
-    </main>
+		    
+		    <ul th:each="doctor : ${doctors}">
+		        <li>
+		            <!--<strong>Nome:</strong> <span th:text="${doctor.user.name + ' ' + doctor.user.surname}"></span><br />-->
+		            <strong>Specializzazione:</strong> <span th:text="${doctor.specialty}"></span><br /><br />
+
+		            <div class="doctor-actions">
+		                <a class="action-button" th:href="@{'/doctor/' + ${doctor.id}}">🔍 Dettagli</a>
+
+		               
+		                <a class="action-button" th:if="${user.role == 'ADMIN'}"
+		                   th:href="@{'/doctor/' + ${doctor.id} + '/edit'}">✏️ Modifica</a>
+
+		                <form th:if="${user.role == 'ADMIN'}"
+		                      th:action="@{'/doctor/' + ${doctor.id} + '/delete'}"
+		                      method="post" th:object="${doctor}" class="inline-form">
+		                    <button type="submit" class="delete-button"
+		                            onclick="return confirm('Sei sicuro di voler eliminare questo dottore?')">
+		                        🗑️ Elimina
+		                    </button>
+		                </form>
+		            </div>
+		        </li>
+		    </ul>
+		</main>
 
 
     <footer>
