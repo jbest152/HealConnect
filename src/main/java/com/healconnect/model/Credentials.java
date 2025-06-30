@@ -2,7 +2,6 @@ package com.healconnect.model;
 
 import java.util.Objects;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -27,7 +26,7 @@ public class Credentials implements BaseEntity {
 	@NotBlank(message = "{credentials.password.notblank}")
 	private String password;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "user_id")
     private User user;
     

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -13,6 +14,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -36,6 +38,9 @@ public class User implements BaseEntity{
     
     @NotNull
     private LocalDate birth;
+    
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Credentials credentials;
 
     public LocalDate getBirth() {
         return birth;
@@ -94,5 +99,13 @@ public class User implements BaseEntity{
 		return Objects.equals(email, other.email)
 				&& Objects.equals(id, other.id) && Objects.equals(name, other.name)
 				&& Objects.equals(surname, other.surname);
+	}
+
+	public Credentials getCredentials() {
+		return credentials;
+	}
+
+	public void setCredentials(Credentials credentials) {
+		this.credentials = credentials;
 	}
 }
