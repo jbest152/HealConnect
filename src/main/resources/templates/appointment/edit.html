@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Modifica Appuntamento</title> 
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<header class="header-main">
+    <a href="/"><img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo" /></a>
+    <div class="header-content">
+        <h1 class="titolo-home">Modifica Appuntamento</h1>
+        <nav class="nav">
+            <a class="nav-link" th:href="@{/home}">Home</a>
+            <a class="nav-link" th:href="@{/profile}">Profilo</a>
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<main class="details-container">
+    <div class="details-card">
+        <h2>✏️ Modifica Appuntamento</h2>
+
+        <form th:action="@{'/appointment/' + *{id}}" th:object="${item}" method="post">
+
+            <input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{patient}" />
+			<input type="hidden" th:field="*{doctor}" />
+			<input type="hidden" th:field="*{bookingDate}" />
+
+            <div class="detail-row">
+                <label class="detail-label" for="date">📅 Data appuntamento:</label>
+                <input type="date" id="date" th:field="*{date}" required />
+                <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
+            </div>
+
+            <div class="detail-row">
+                <label class="detail-label" for="time">⏰ Ora appuntamento:</label>
+                <input type="time" id="time" th:field="*{time}" required />
+                <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
+            </div>
+
+        </form>
+    </div>
+</main>
+
+	<footer>
+	    &copy; 2025 HealConnect - Tutti i diritti riservati
+	</footer>
+</body>
+</html>
