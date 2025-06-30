@@ -16,17 +16,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class AuthController {
 
-    private final AppointmentController appointmentController;
-
 	@Autowired
 	private CredentialsService credentialsService;
 	
 	@Autowired
 	private UserService userService;
-
-    AuthController(AppointmentController appointmentController) {
-        this.appointmentController = appointmentController;
-    }
 
 	@GetMapping({"/register", "/register/{role}"})
 	public String showRegisterForm(@PathVariable(required = false) Role role, Model model) {

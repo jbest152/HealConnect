@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.healconnect.HealConnectApplication;
 import com.healconnect.model.Appointment;
-import com.healconnect.model.Doctor;
-import com.healconnect.model.Patient;
 import com.healconnect.service.DoctorService;
 import com.healconnect.service.PatientService;
 
@@ -25,7 +22,6 @@ import jakarta.validation.Valid;
 @RequestMapping("/appointment")
 public class AppointmentController extends GenericController<Appointment> {
 
-    private final HealConnectApplication healConnectApplication;
 
 	@Autowired
 	private PatientService patientService;
@@ -33,9 +29,8 @@ public class AppointmentController extends GenericController<Appointment> {
 	@Autowired
 	private DoctorService doctorService;
 	
-	public AppointmentController(HealConnectApplication healConnectApplication) {
+	public AppointmentController() {
 		super(Appointment.class);
-		this.healConnectApplication = healConnectApplication;
 	}
 	
 	@GetMapping("/patient/{id}")
