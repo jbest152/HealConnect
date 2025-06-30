@@ -1,23 +1,31 @@
 package com.healconnect.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import com.healconnect.HealConnectApplication;
 import com.healconnect.model.Appointment;
 import com.healconnect.model.Doctor;
 import com.healconnect.model.Patient;
 import com.healconnect.service.DoctorService;
 import com.healconnect.service.PatientService;
 
+import jakarta.validation.Valid;
+
 @Controller
 @RequestMapping("/appointment")
 public class AppointmentController extends GenericController<Appointment> {
+
+    private final HealConnectApplication healConnectApplication;
 
 	@Autowired
 	private PatientService patientService;
@@ -25,8 +33,9 @@ public class AppointmentController extends GenericController<Appointment> {
 	@Autowired
 	private DoctorService doctorService;
 	
-	public AppointmentController() {
+	public AppointmentController(HealConnectApplication healConnectApplication) {
 		super(Appointment.class);
+		this.healConnectApplication = healConnectApplication;
 	}
 	
 	@GetMapping("/patient/{id}")
@@ -47,9 +56,23 @@ public class AppointmentController extends GenericController<Appointment> {
 	@PreAuthorize("hasAuthority('PATIENT') or hasAuthority('DOCTOR')")
 	@GetMapping("/new")
 	public String showCreateForm(Model model){
+		Appointment item = new Appointment();
+		item.setBookingDate(LocalDate.now());
 		model.addAttribute("patients", patientService.findAll());
 		model.addAttribute("doctors", doctorService.findAll());
-		return super.showCreateForm(model);
+		model.addAttribute("item", item);
+		return "appointment/create";
+	}
+	
+
+	@Override
+	@PostMapping
+	public String create(@Valid @ModelAttribute("item") Appointment item, BindingResult result) {
+		if (result.hasErrors()) {
+			return "appointment/create";
+		}
+		service.save(item);
+		return "redirect:/appointment/"  + item.getId();
 	}
 
 	@Override

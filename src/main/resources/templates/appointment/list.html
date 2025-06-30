@@ -33,7 +33,7 @@
                 <strong>ID:</strong> <span th:text="${appointment.id}"></span><br />
                 <strong>Data:</strong> <span th:text="${appointment.date}"></span><br />
                 <strong>Orario:</strong> <span th:text="${appointment.time}"></span><br />
-                <strong>Paziente:</strong> <span th:text="${appointment.patient.name}"></span><br />
+                <strong>Paziente:</strong> <span th:text="${appointment.patient.user.name}"></span><br />
                 <strong>Dottore:</strong> <span th:text="${appointment.doctor.specialty}"></span><br /><br />
                 <a th:href="@{'/appointment/' + ${appointment.id}}">🔍 Dettagli</a> |
                 <a th:href="@{'/appointment/' + ${appointment.id} + '/edit'}">✏️ Modifica</a> |
