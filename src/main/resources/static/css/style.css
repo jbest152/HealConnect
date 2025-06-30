@@ -320,3 +320,13 @@ form button:hover {
     margin-bottom: 15px;
 }
 
+.back-link {
+    font-size: 1.1rem;
+    color: #004d66;
+    text-decoration: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+

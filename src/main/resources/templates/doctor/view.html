@@ -21,6 +21,7 @@
     <main class="details-container">
         <div class="detail-item">
             <strong>ID:</strong> <span th:text="${doctor.id}"></span>
+			<strong>Nome:</strong> <span th:text="${doctor.user.name + ' ' + doctor.user.surname}"></span><br />
         </div>
         <div class="detail-item">
             <strong>Specializzazione:</strong> <span th:text="${doctor.specialty}"></span>
