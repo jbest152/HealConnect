@@ -22,35 +22,48 @@
         <div class="details-card">
             <h2>✏️ Modifica Dottore</h2>
 
-            <form th:action="@{'/doctor/'+${item.id}+'/edit'}" th:object="${item}" method="post">
+			<form th:action="@{'/doctor/' + *{id}}" th:object="${item}" method="post">
 
-			    <input type="hidden" name="id" th:value="${item.id}" />
+			    <input type="hidden" th:field="*{id}" />
 
-			    <div class="detail-row">
-			        <label class="detail-label" for="name">👤 Nome:</label>
-			        <input type="text" id="name" name="name" th:value="${item.user.name}" required />
+				<div class="detail-row">
+				        <label class="detail-label" for="name">👤 Nome:</label>
+				        <input type="text" id="name" th:field="*{user.name}" required />
+				        <div th:if="${#fields.hasErrors('user.name')}" th:errors="*{user.name}"></div>
 			    </div>
 
 			    <div class="detail-row">
 			        <label class="detail-label" for="surname">👤 Cognome:</label>
-			        <input type="text" id="surname" name="surname" th:value="${item.user.surname}" required />
+			        <input type="text" id="surname" th:field="*{user.surname}" required />
+			        <div th:if="${#fields.hasErrors('user.surname')}" th:errors="*{user.surname}"></div>
 			    </div>
+				
 
-				<input type="hidden" th:field="*{user}" />
-					        <input type="text" th:field="*{specialty}"/>
-					        <div th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}"></div>
-							
-			  <!-- <div class="detail-row">
+				<div class="detail-row">
+				    <label class="detail-label" for="email">📧 Email:</label>
+				    <input type="email" id="email" th:field="*{user.email}" required />
+				    <div th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}"></div>
+				</div>
+
+				<div class="detail-row">
+				    <label class="detail-label" for="birth">🎂 Data di nascita:</label>
+				    <input type="date" id="birth" th:field="*{user.birth}" required />
+				    <div th:if="${#fields.hasErrors('user.birth')}" th:errors="*{user.birth}"></div>
+				</div>
+
+			    <div class="detail-row">
 			        <label class="detail-label" for="specialty">🩺 Specializzazione:</label>
-			        <input type="text" id="specialty" name="specialty" th:value="${item.specialty}" required />
-			    </div>--> 
+			        <input type="text" id="specialty" th:field="*{specialty}" required />
+			        <div th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}"></div>
+			    </div>
 
 			    <div class="button-container">
 			        <button type="submit" class="action-button">Salva Modifiche</button>
 			        <a th:href="@{/doctor}" class="back-button">← Annulla</a>
 			    </div>
-			</form>
 
+			</form>
+			
         </div>
     </main>
 

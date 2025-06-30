@@ -54,4 +54,15 @@ public class DoctorController extends GenericController<Doctor> {
 		service.save(item);
 		return "redirect:/doctor/"  + item.getId();
 	}
+	
+	@Override
+	@PostMapping("/{id}")
+	public String update(@Valid @ModelAttribute("item") Doctor item, BindingResult result, @PathVariable Long id) {
+		item.setUser(item.getUser());
+		if (result.hasErrors()) {
+			return "doctor/edit";
+		}
+		service.save(item);
+		return "redirect:/doctor/" + id;
+	}
 }
