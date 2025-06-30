@@ -311,12 +311,14 @@ form button:hover {
 
 .details-container {
     padding: 30px;
-    max-width: 600px;
     margin: 0 auto;
     font-size: 18px;
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    gap: 40px; /* maggiore spazio tra i blocchi */
+    justify-content: center;
+    flex-wrap: wrap; /* per responsività su schermi piccoli */
+    max-width: 1200px;
 }
 
 .detail-item {
@@ -367,6 +369,9 @@ form button:hover {
 .button-container {
     margin-top: 30px;
     text-align: center;
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
 }
 
 .back-button {
@@ -382,5 +387,28 @@ form button:hover {
 
 .back-button:hover {
     background-color: #01579b;
+}
+
+.view-button, .edit-button, .delete-button, .back-button {
+    padding: 8px 14px;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.view-button { background-color: #4caf50; }
+.edit-button { background-color: #ff9800; }
+.delete-button { background-color: #f44336; }
+.back-button { background-color: #01579b; }
+
+.view-button:hover,
+.edit-button:hover,
+.delete-button:hover,
+.back-button:hover {
+    opacity: 0.9;
 }
 
