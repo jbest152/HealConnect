@@ -21,11 +21,11 @@
 	    </header>
 
     <main class="menu">
-        <ul>
-            <li>
-                <a th:href="@{/doctor/new}">➕ Crea nuovo dottore</a>
-            </li>
-        </ul>
+		<ul>
+		    <li th:if="${user.credentials.role.name()== 'ADMIN'}">
+		        <a th:href="@{/doctor/new}">➕ Crea nuovo dottore</a>
+		    </li>
+		</ul>
 
 		<div class="details-container" th:each="doctor : ${doctors}">
 		    <div class="details-card">
@@ -34,8 +34,8 @@
 
 		        <div class="doctor-card-actions">
 		            <a class="small-button view-button" th:href="@{'/doctor/' + ${doctor.id}}">🔍 Dettagli</a>
-		            <a class="small-button edit-button" th:href="@{'/doctor/' + ${doctor.id} + '/edit'}">✏️ Modifica</a>
-					<form th:action="@{'/doctor/' + ${doctor.id} + '/delete'}" method="post" th:object="${doctor}" class="inline-form">
+		            <a class="small-button edit-button" th:href="@{'/doctor/' + ${doctor.id} + '/edit'}"  th:if="${user.credentials.role.name()== 'ADMIN'}">✏️ Modifica</a>
+					<form th:action="@{'/doctor/' + ${doctor.id} + '/delete'}" method="post" th:object="${doctor}" class="inline-form" th:if="${user.credentials.role.name()== 'ADMIN'}">
 					    <button type="submit" class="small-button delete-button" onclick="return confirm('Sei sicuro di voler eliminare questo dottore?')">
 					        🗑️ Elimina
 					    </button>

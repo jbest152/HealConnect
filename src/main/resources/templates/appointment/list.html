@@ -11,7 +11,7 @@
 	<header class="header-main">
 	       <img src="images/logo-healconnect.png" alt="Logo HealConnect" class="logo" />
 	       <div class="header-content">
-	           <h1 class="titolo-home">Cartella Medica del Paziente</h1>
+	           <h1 class="titolo-home">Appuntamenti</h1>
 	           <nav class="nav">
 	               <a class="nav-link" th:href="@{/home}">Home</a>
 	               <a class="nav-link" th:href="@{/profile}">Profilo</a>
@@ -21,28 +21,34 @@
 	 </header>
 	   
 	   
-    <main class="menu">
-        <ul>
-            <li>
-                <a th:href="@{/appointment/new}">➕ Crea nuovo appuntamento</a>
-            </li>
-        </ul>
+	 <main class="menu">
+	     <ul>
+	         <li>
+	             <a th:href="@{/appointment/new}">➕ Crea nuovo appuntamento</a>
+	         </li>
+	     </ul>
 
-        <ul th:each="appointment : ${appointments}">
-            <li>
-                <strong>ID:</strong> <span th:text="${appointment.id}"></span><br />
-                <strong>Data:</strong> <span th:text="${appointment.date}"></span><br />
-                <strong>Orario:</strong> <span th:text="${appointment.time}"></span><br />
-                <strong>Paziente:</strong> <span th:text="${appointment.patient.user.name}"></span><br />
-                <strong>Dottore:</strong> <span th:text="${appointment.doctor.specialty}"></span><br /><br />
-                <a th:href="@{'/appointment/' + ${appointment.id}}">🔍 Dettagli</a> |
-                <a th:href="@{'/appointment/' + ${appointment.id} + '/edit'}">✏️ Modifica</a> |
-                <form th:action="@{'/appointment/' + ${appointment.id} + '/delete'}" method="post" th:object="${appointment}" style="display:inline;">
-                    <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo appuntamento?')">🗑️ Elimina</button>
-                </form>
-            </li>
-        </ul>
-    </main>
+	     <div class="details-container" th:each="appointment : ${appointments}">
+	         <div class="details-card">
+	             <p><strong>ID:</strong> <span th:text="${appointment.id}"></span></p>
+	             <p><strong>Data:</strong> <span th:text="${appointment.date}"></span></p>
+	             <p><strong>Orario:</strong> <span th:text="${appointment.time}"></span></p>
+	             <p><strong>Paziente:</strong> <span th:text="${appointment.patient.user.name}"></span></p>
+	             <p><strong>Dottore:</strong> <span th:text="${appointment.doctor.specialty}"></span></p>
+
+	             <div class="doctor-card-actions">
+	                 <a class="small-button view-button" th:href="@{'/appointment/' + ${appointment.id}}">🔍 Dettagli</a>
+	                 <a class="small-button edit-button" th:href="@{'/appointment/' + ${appointment.id} + '/edit'}">✏️ Modifica</a>
+	                 <form th:action="@{'/appointment/' + ${appointment.id} + '/delete'}" method="post" th:object="${appointment}" 
+					 		class="inline-form" th:if="${user.credentials.role.name()== 'ADMIN' || user.credentials.role.name()== 'DOCTOR'}">
+	                     <button type="submit" class="small-button delete-button" onclick="return confirm('Sei sicuro di voler eliminare questo appuntamento?')">
+	                         🗑️ Elimina
+	                     </button>
+	                 </form>
+	             </div>
+	         </div>
+	     </div>
+	 </main>
 
 
     <footer>

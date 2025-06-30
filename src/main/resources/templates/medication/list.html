@@ -41,7 +41,8 @@
 	
 		
 			<div>
-		           <a href="/medication/new" class="submit-button">Aggiungi Medicinale</a>
+		           <a href="/medication/new" class="submit-button" 
+				   		th:if="${user.credentials.role.name()== 'ADMIN' || user.credentials.role.name()== 'DOCTOR'}">Aggiungi Medicinale</a>
 		       </div>
     </main>
 

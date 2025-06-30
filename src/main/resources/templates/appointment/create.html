@@ -8,71 +8,75 @@
 
 <body>
 
-	<header class="header-main">
-		       <img src="images/logo-healconnect.png" alt="Logo HealConnect" class="logo" />
-		       <div class="header-content">
-		           <h1 class="titolo-home">Crea appuntamento</h1>
-		           <nav class="nav">
-		               <a class="nav-link" th:href="@{/home}">Home</a>
-		               <a class="nav-link" th:href="@{/profile}">Profilo</a>
-		               <a class="nav-link" th:href="@{/logout}">Logout</a>
-		           </nav>
-		       </div>
-	</header>
-		   
-    <h1>Nuovo Appuntamento</h1>
+<header class="header-main">
+    <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo" />
+    <div class="header-content">
+        <h1 class="titolo-home">Crea appuntamento</h1>
+        <nav class="nav">
+            <a class="nav-link" th:href="@{/home}">Home</a>
+            <a class="nav-link" th:href="@{/profile}">Profilo</a>
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </nav>
+    </div>
+</header>
 
-	<form th:action="@{/appointment}" th:object="${item}" method="post">
+<main>
+    <h1 style="text-align:center; margin-top: 30px; color:#01579b;">Nuovo Appuntamento</h1>
 
-	    <!-- DATA -->
-	    <div>
-	        <label for="date">📅 Data:</label>
-	        <input type="date" id="date" th:field="*{date}" required />
-	        <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
-	    </div>
-		
-		<input type="hidden" th:field="*{bookingDate}" />
+    <form th:action="@{/appointment}" th:object="${item}" method="post" class="login-form">
+        <div>
+            <label for="date">📅 Data:</label>
+            <input type="date" id="date" th:field="*{date}" required />
+            <div class="error-message" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
+        </div>
 
-	    <!-- ORARIO -->
-	    <div>
-	        <label for="time">🕒 Orario:</label>
-	        <input type="time" id="time" th:field="*{time}" required />
-	        <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
-	    </div>
+        <input type="hidden" th:field="*{bookingDate}" />
 
-	    <!-- PAZIENTE -->
-	    <div>
-	        <label for="patient">🧑‍⚕️ Paziente:</label>
-	        <select id="patient" th:field="*{patient.id}" required>
-	            <option value="">Seleziona un paziente</option>
-	            <option th:each="patient : ${patients}"
-	                    th:value="${patient.id}"
-	                    th:text="${patient.user.name} + ' ' + ${patient.user.surname}">
-	            </option>
-	        </select>
-	        <div th:if="${#fields.hasErrors('patient')}" th:errors="*{patient}"></div>
-	    </div>
+        <div>
+            <label for="time">🕒 Orario:</label>
+            <input type="time" id="time" th:field="*{time}" required />
+            <div class="error-message" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
+        </div>
 
-	    <!-- DOTTORE -->
-	    <div>
-	        <label for="doctor">🩺 Dottore (Cognome):</label>
-	        <select id="doctor" th:field="*{doctor.id}" required>
-	            <option value="">Seleziona un dottore</option>
-	            <option th:each="doctor : ${doctors}"
-	                    th:value="${doctor.id}"
-	                    th:text="${doctor.user.name} + ' ' + ${doctor.user.surname} + ' - ' + ${doctor.specialty}">
-	            </option>
-	        </select>
-	        <div th:if="${#fields.hasErrors('doctor')}" th:errors="*{doctor}"></div>
-	    </div>
+        <div>
+            <label for="patient">🧑‍⚕️ Paziente:</label>
+            <select id="patient" th:field="*{patient.id}" required>
+                <option value="">Seleziona un paziente</option>
+                <option th:each="patient : ${patients}" 
+                        th:value="${patient.id}" 
+                        th:text="${patient.user.name} + ' ' + ${patient.user.surname}">
+                </option>
+            </select>
+            <div class="error-message" th:if="${#fields.hasErrors('patient')}" th:errors="*{patient}"></div>
+        </div>
 
-	    <!-- SUBMIT -->
-	    <div>
-	        <button type="submit">💾 Salva</button>
-	    </div>
+        <div>
+            <label for="doctor">🩺 Dottore (Nome e Cognome):</label>
+            <select id="doctor" th:field="*{doctor.id}" required>
+                <option value="">Seleziona un dottore</option>
+                <option th:each="doctor : ${doctors}" 
+                        th:value="${doctor.id}" 
+                        th:text="${doctor.user.name} + ' ' + ${doctor.user.surname} + ' - ' + ${doctor.specialty}">
+                </option>
+            </select>
+            <div class="error-message" th:if="${#fields.hasErrors('doctor')}" th:errors="*{doctor}"></div>
+        </div>
 
-	</form>
-    <a th:href="@{/appointment}">← Torna alla lista appuntamenti</a>
+        <div style="text-align:center; margin-top: 25px;">
+            <button type="submit">💾 Salva</button>
+        </div>
+    </form>
+
+    <div style="text-align:center; margin-top: 20px;">
+        <a href="#" th:href="@{/appointment}" class="back-button">← Torna alla lista appuntamenti</a>
+    </div>
+</main>
+
+
+<footer>
+    &copy; 2025 HealConnect - Tutti i diritti riservati
+</footer>
+
 
 </body>
 </html>

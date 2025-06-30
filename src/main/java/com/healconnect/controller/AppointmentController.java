@@ -41,6 +41,14 @@ public class AppointmentController extends GenericController<Appointment> {
 	@GetMapping("/patient/{id}")
 	public String listFromPatient(@PathVariable Long id, Model model) {
 		model.addAttribute("appointments", patientService.findById(id).getAppointments());
+		model.addAttribute("user", patientService.findById(id).getUser());
+		return "appointment/list";
+	}
+	
+	@GetMapping("/doctor/{id}")
+	public String listFromDoctor(@PathVariable Long id, Model model) {
+		model.addAttribute("appointments", doctorService.findById(id).getAppointments());
+		model.addAttribute("user", doctorService.findById(id).getUser());
 		return "appointment/list";
 	}
 	

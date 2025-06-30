@@ -174,7 +174,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: #003366;
 }
 
@@ -245,11 +245,12 @@ form label {
     margin-bottom: 5px;
 }
 
-form input {
+form input, form select {
     padding: 8px;
     font-size: 1em;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 100%;
 }
 
 form button {
