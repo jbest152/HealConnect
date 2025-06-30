@@ -19,7 +19,7 @@ public class Patient implements BaseEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	 @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)

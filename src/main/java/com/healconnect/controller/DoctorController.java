@@ -54,5 +54,4 @@ public class DoctorController extends GenericController<Doctor> {
 		service.save(item);
 		return "redirect:/doctor/"  + item.getId();
 	}
-	
 }

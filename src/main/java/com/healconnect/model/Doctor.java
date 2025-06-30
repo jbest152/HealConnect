@@ -3,6 +3,7 @@ package com.healconnect.model;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class Doctor implements BaseEntity{
 	@NotBlank(message = "{doctor.specialty.notblank}")
     private String specialty;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
     @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
