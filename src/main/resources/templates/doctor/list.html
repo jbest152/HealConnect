@@ -14,7 +14,7 @@
 	            <h1 class="titolo-home">Lista Dottori</h1>
 	            <nav class="nav">
 	                <a class="nav-link" th:href="@{/home}">Home</a>
-	                <a class="nav-link" th:href="@{/profile}">Profilo</a>
+	                <a class="nav-link" th:if="${user.credentials.role.name() != 'ADMIN'}" th:href="@{/profile}">Profilo</a>
 	                <a class="nav-link" th:href="@{/login}">Logout</a>
 	            </nav>
 	        </div>
