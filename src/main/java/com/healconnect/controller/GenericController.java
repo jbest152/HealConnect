@@ -1,6 +1,7 @@
 package com.healconnect.controller;
 
 import com.healconnect.model.BaseEntity;
+import com.healconnect.service.CredentialsService;
 import com.healconnect.service.GenericService;
 
 import jakarta.validation.Valid;
@@ -9,6 +10,8 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,10 @@ public abstract class GenericController<T extends BaseEntity> {
 
 	@Autowired
 	protected GenericService<T, Long> service;
+	
+	@Autowired
+	private CredentialsService credentialsService;
+	
 	private final String className;
 	private final Class<T> clazz;
 
@@ -26,7 +33,9 @@ public abstract class GenericController<T extends BaseEntity> {
 	}
 
 	@GetMapping
-	public String list(Model model) {
+	public String list(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+		if (userDetails != null)
+			model.addAttribute("user", credentialsService.findByUsername(userDetails.getUsername()).getUser());
 		model.addAttribute(className + "s", service.findAll());
 		return className + "/list";
 	}
