@@ -412,3 +412,57 @@ form button:hover {
     opacity: 0.9;
 }
 
+.doctor-card-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: nowrap; 
+    align-items: center;
+}
+
+.doctor-card-actions .small-button {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: rgb(84, 194, 254);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.inline-form button {
+    all: unset;
+    display: inline-block;
+    padding: 6px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none !important;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.inline-form button:hover {
+    background-color: #d32f2f;
+}
+
+.inline-form button:focus {
+	outline: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}

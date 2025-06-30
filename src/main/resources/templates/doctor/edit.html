@@ -25,6 +25,7 @@
 			<form th:action="@{'/doctor/' + *{id}}" th:object="${item}" method="post">
 
 			    <input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:field="*{user.id}" />
 
 				<div class="detail-row">
 				        <label class="detail-label" for="name">👤 Nome:</label>
