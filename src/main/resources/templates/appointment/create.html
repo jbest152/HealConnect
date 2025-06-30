@@ -22,48 +22,56 @@
 		   
     <h1>Nuovo Appuntamento</h1>
 
-    <form th:action="@{/appointment}" th:object="${item}" method="post">
-        <div>
-            <label for="date">Data:</label>
-            <input type="date" id="date" th:field="*{date}" required />
-            <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
-        </div>
+	<form th:action="@{/appointment}" th:object="${item}" method="post">
 
-        <div>
-            <label for="time">Orario:</label>
-            <input type="time" id="time" th:field="*{time}" required />
-            <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
-        </div>
+	    <!-- DATA -->
+	    <div>
+	        <label for="date">📅 Data:</label>
+	        <input type="date" id="date" th:field="*{date}" required />
+	        <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
+	    </div>
+		
+		<input type="hidden" th:field="*{bookingDate}" />
 
-		<div>
-		  <label for="patient">Paziente:</label>
-		  <select id="patient" th:field="*{patient.id}" required>
-		    <option value="" disabled selected>Seleziona un paziente</option>
-		    <option th:each="patient : ${patients}" 
-		            th:value="${patient.id}" 
-		            th:text="${patient.user.name} + ' ' + ${patient.user.surname}">
-		    </option>
-		  </select>
-		  <div th:if="${#fields.hasErrors('patient')}" th:errors="*{patient}"></div>
-		</div>
+	    <!-- ORARIO -->
+	    <div>
+	        <label for="time">🕒 Orario:</label>
+	        <input type="time" id="time" th:field="*{time}" required />
+	        <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
+	    </div>
 
-		<div>
-		  <label for="doctor">Dottore (Specialità):</label>
-		  <select id="doctor" th:field="*{doctor.id}" required>
-		    <option value="" disabled selected>Seleziona un dottore</option>
-		    <option th:each="doctor : ${doctors}" 
-		            th:value="${doctor.id}" 
-		            th:text="${doctor.specialty}">
-		    </option>
-		  </select>
-		  <div th:if="${#fields.hasErrors('doctor')}" th:errors="*{doctor}"></div>
-		</div>
+	    <!-- PAZIENTE -->
+	    <div>
+	        <label for="patient">🧑‍⚕️ Paziente:</label>
+	        <select id="patient" th:field="*{patient.id}" required>
+	            <option value="">Seleziona un paziente</option>
+	            <option th:each="patient : ${patients}"
+	                    th:value="${patient.id}"
+	                    th:text="${patient.user.name} + ' ' + ${patient.user.surname}">
+	            </option>
+	        </select>
+	        <div th:if="${#fields.hasErrors('patient')}" th:errors="*{patient}"></div>
+	    </div>
 
-        <div>
-            <button type="submit">Salva</button>
-        </div>
-    </form>
+	    <!-- DOTTORE -->
+	    <div>
+	        <label for="doctor">🩺 Dottore (Cognome):</label>
+	        <select id="doctor" th:field="*{doctor.id}" required>
+	            <option value="">Seleziona un dottore</option>
+	            <option th:each="doctor : ${doctors}"
+	                    th:value="${doctor.id}"
+	                    th:text="${doctor.user.name} + ' ' + ${doctor.user.surname} + ' - ' + ${doctor.specialty}">
+	            </option>
+	        </select>
+	        <div th:if="${#fields.hasErrors('doctor')}" th:errors="*{doctor}"></div>
+	    </div>
 
+	    <!-- SUBMIT -->
+	    <div>
+	        <button type="submit">💾 Salva</button>
+	    </div>
+
+	</form>
     <a th:href="@{/appointment}">← Torna alla lista appuntamenti</a>
 
 </body>
