@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Modifica Dottore</title> 
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <header class="header-main">
+        <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo" />
+        <div class="header-content">
+            <h1 class="titolo-home">Modifica Dottore</h1>
+            <nav class="nav">
+                <a class="nav-link" th:href="@{/home}">Home</a>
+                <a class="nav-link" th:href="@{/profile}">Profilo</a>
+                <a class="nav-link" th:href="@{/login}">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="details-container">
+        <div class="details-card">
+            <h2>✏️ Modifica Dottore</h2>
+
+            <form th:action="@{/doctor/update}" method="post" class="doctor-form">
+
+                <div class="detail-row">
+                    <label class="detail-label" for="name">👤 Nome:</label>
+                    <input type="text" id="name" name="name" th:value="${doctor.user.name}" required />
+                </div>
+
+                <div class="detail-row">
+                    <label class="detail-label" for="surname">👤 Cognome:</label>
+                    <input type="text" id="surname" name="surname" th:value="${doctor.user.surname}" required />
+                </div>
+
+                <div class="detail-row">
+                    <label class="detail-label" for="specialty">🩺 Specializzazione:</label>
+                    <input type="text" id="specialty" name="specialty" th:value="${doctor.specialty}" required />
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" class="action-button">Salva Modifiche</button>
+                    <a th:href="@{/doctor}" class="back-button">← Annulla</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 HealConnect - Tutti i diritti riservati
+    </footer>
+</body>
+</html>
