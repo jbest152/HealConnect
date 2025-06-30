@@ -33,6 +33,7 @@ public class DoctorController extends GenericController<Doctor> {
 	@GetMapping("/new")
 	public String showCreateForm(Model model){
 		return "redirect:/register/" + Role.DOCTOR;
+	
 	}
 	
 	@GetMapping("/complete-registration/{userId}")
