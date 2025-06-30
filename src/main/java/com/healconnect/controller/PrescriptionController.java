@@ -15,6 +15,7 @@ import com.healconnect.model.Prescription;
 import com.healconnect.model.User;
 import com.healconnect.service.DoctorService;
 import com.healconnect.service.MedicationService;
+import com.healconnect.service.PatientService;
 import com.healconnect.service.UserService;
 
 @Controller
@@ -29,6 +30,9 @@ public class PrescriptionController extends GenericController<Prescription>{
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private PatientService patientService;
 	
 	public PrescriptionController() {
 		super(Prescription.class);
@@ -51,6 +55,7 @@ public class PrescriptionController extends GenericController<Prescription>{
 		model.addAttribute("item", item);
 		model.addAttribute("medications", medicationService.findAll());
 		model.addAttribute("doctors",new Doctor[] {doctorService.findByUser(user)});
+		model.addAttribute("patients", patientService.findAll());
 		return "prescription/create";
 	}
 	
