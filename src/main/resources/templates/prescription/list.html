@@ -35,7 +35,7 @@
         </section>
 
         <div>
-            <a href="/prescription/new" class="submit-button" 
+            <a th:href="${'/prescription/user/' + {user.id}}" class="submit-button" 
 				th:if="${user.credentials.role.name()== 'ADMIN' || user.credentials.role.name()== 'DOCTOR'}">Crea nuova ricetta</a>
         </div>
     </main>
