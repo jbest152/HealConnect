@@ -19,27 +19,29 @@
         </div>
     </header>
 
-    <main class="record-container">
-        <section class="prescriptions">
-            <h2>Prescrizioni disponibili</h2>
-            <ul class="prescription-list">
-                <li th:each="prescription : ${prescriptions}">
-                    <a th:href="@{/prescription/{id}(id=${prescription.id})}" class="prescription-card">
-                        <h3 th:text="${prescription.medication.name}">Nome farmaco</h3>
-                        <p><strong>Descrizione:</strong> <span th:text="${prescription.description}">Descrizione</span></p>
-                        <p><strong>Medico:</strong> <span th:text="${prescription.doctor.user.surname}">Dott. Nome</span></p>
-                        <p><strong>Data:</strong> <span th:text="${prescription.date}">Data</span></p>
-                    </a>
-                </li>
-            </ul>
-        </section>
+	<main class="record-container">
+	    <section class="prescriptions">
+	        <h2>Prescrizioni disponibili</h2>
+	        <ul class="prescription-list">
+	            <li th:each="prescription : ${prescriptions}">
+	                <a th:href="@{/prescription/{id}(id=${prescription.id})}" class="prescription-card">
+	                    <h3 th:text="${prescription.medication.name}">Nome farmaco</h3>
+	                    <p><strong>Descrizione:</strong> <span th:text="${prescription.description}">Descrizione</span></p>
+	                    <p><strong>Medico:</strong> <span th:text="${prescription.doctor.user.surname}">Dott. Nome</span></p>
+	                    <p><strong>Data:</strong> <span th:text="${prescription.date}">Data</span></p>
+	                </a>
+	            </li>
+	        </ul>
+	    </section>
 
-        <div>
-            <a th:href="${'/prescription/user/' + {user.id}+ '/new'}" class="submit-button" 
-				th:if="${user.credentials.role.name()== 'ADMIN' || user.credentials.role.name()== 'DOCTOR'}">Crea nuova ricetta</a>
-        </div>
-    </main>
-
+	    <div class="button-container">
+	        <a th:href="${'/prescription/user/' + {user.id} + '/new'}" class="submit-button"
+	           th:if="${user.credentials.role.name() == 'ADMIN' || user.credentials.role.name() == 'DOCTOR'}">
+	           Crea nuova ricetta
+	        </a>
+	    </div>
+	</main>
+	
     <footer>
         <p>&copy; 2025 HealConnect. Tutti i diritti riservati.</p>
     </footer>
