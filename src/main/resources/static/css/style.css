@@ -16,27 +16,16 @@ body {
 }
 
 /* Header */
-header {
+.header-main {
+    position: relative;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
     background-color: #0277bd;
-    padding: 20px;
-    text-align: center;
-    color: white;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.highlight {
-    color: #b2ebf2;
-}
-
-.header-main {
-	   position: relative;
-	    height: 220px;
-	    display: flex;
-	    align-items: center;
-	    padding: 0 40px;
-	    background-color: #0277bd;
-	    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
 .header-content {
     display: flex;
     flex-direction: column;
@@ -47,10 +36,10 @@ header {
 }
 
 .nav {
-	    margin-left: auto;
-	    display: flex;
-	    gap: 20px;
-	    z-index: 2;
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+    z-index: 2;
 }
 
 .nav-link {
@@ -69,28 +58,40 @@ header {
     border-color: white;
 }
 
+.inline-form {
+    display: inline-block;
+    margin: 0; 
+}
+
+.logout-form {
+    display: inline;
+}
+
+.logout-link {
+    all: unset; 
+    font-size: 1.1rem;
+    color: #b2ebf2;
+    text-decoration: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-link:hover {
+    background-color: #0288d1;
+    color: white;
+    border-color: white;
+}
+
 .logo {
     height: 300px; 
     width: auto;
     position: absolute;
     left: 10px;
-	top: -40px;
-	z-index: 0;
-}
-
-.login-link {
-    font-size: 1.3rem;
-    color: #b2ebf2;
-    text-decoration: none;
-    border: 2px solid #b2ebf2;
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.login-link:hover {
-    background-color: #0288d1;
-    color: white;
+    top: -40px;
+    z-index: 0;
 }
 
 .titolo-home {
@@ -104,9 +105,9 @@ header {
     z-index: 1;
 }
 
-/* Main content */
+/* Menu */
 .menu a {
-	display: block; 
+    display: block; 
     text-decoration: none;
     color: #01579b;
     font-size: 1.5rem;
@@ -115,8 +116,9 @@ header {
     border-radius: 8px;
     background-color: white;
     transition: background-color 0.3s, color 0.3s;
-	text-align: center;
+    text-align: center;
 }
+
 .menu ul {
     list-style-type: none;
     margin-top: 20px;
@@ -130,200 +132,22 @@ header {
     margin: 15px 0;
 }
 
-
-
 .menu a:hover {
     background-color: #0288d1;
     color: white;
 }
 
-/* Footer */
-footer {
-    background-color: #e1f5fe;
-    text-align: center;
-    padding: 15px;
-    font-size: 0.9rem;
-    color: #007096;
-}
-
-/* Contenitore login */
-.login-container {
-    max-width: 400px;
-    margin: 150px auto;
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 96, 158, 0.2);
-    text-align: center;
-}
-
-.login-container h1 {
-    margin-bottom: 30px;
-    font-size: 1.8rem;
-    color: #01579b;
-}
-
-/* Form */
-.login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.login-form label {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 1.3rem;
-    color: #003366;
-}
-
-.login-form input {
-    padding: 8px 12px;
-    width: 100%;
-    border: 1px solid #b0cce8;
-    border-radius: 6px;
-    margin-top: 5px;
-}
-
-.login-form button {
-    padding: 10px 20px;
-    background-color: #0288d1;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login-form button:hover {
-    background-color: #0277bd;
-}
-
-/* Error */
-.error-message {
-    color: red;
-    font-size: 0.9rem;
-}
-
-/* Registrazione */
-.register-link {
-    margin-top: 20px;
-    font-size: 0.95rem;
-}
-
-.register-link a {
-    color: #0288d1;
-    text-decoration: none;
-}
-
-.register-link a:hover {
-    text-decoration: underline;
-}
-
-
-/*APPUNTAMENTO*/
-
-form {
-    max-width: 500px;
-    margin: 30px auto;
-    background-color: #f9f9f9;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-form div {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-}
-
-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-form input, form select {
-    padding: 8px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-}
-
-form button {
-    background-color: #2c7be5;
-    color: white;
-    padding: 10px 15px;
-    font-size: 1em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-form button:hover {
-    background-color: #1a5fc9;
-}
-
-
-/*MEDICO */
-.doctor-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-}
-
-.action-button {
-    background-color: #0288d1;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: background-color 0.3s ease;
-}
-
-.action-button:hover {
-    background-color: #0277bd;
-}
-
-.inline-form {
-    display: inline;
-}
-
-.delete-button {
-    background-color: #e53935;
-    color: white;
-    padding: 8px 14px;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.delete-button:hover {
-    background-color: #c62828;
-}
-
+/* Appointments */
 .details-container {
     padding: 30px;
     margin: 0 auto;
     font-size: 18px;
     display: flex;
     flex-direction: row;
-    gap: 40px; /* maggiore spazio tra i blocchi */
+    gap: 40px;
     justify-content: center;
-    flex-wrap: wrap; /* per responsività su schermi piccoli */
+    flex-wrap: wrap;
     max-width: 1200px;
-}
-
-.detail-item {
-    margin-bottom: 15px;
 }
 
 .details-card {
@@ -357,22 +181,12 @@ form button:hover {
     color: #01579b;
 }
 
-.back-link {
-    font-size: 1.1rem;
-    color: #004d66;
-    text-decoration: none;
-    border: 1px solid transparent;
-    padding: 6px 12px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-}
-
 .button-container {
     margin-top: 30px;
     text-align: center;
-	display: flex;
-	gap: 10px;
-	flex-wrap: wrap;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .back-button {
@@ -390,28 +204,6 @@ form button:hover {
     background-color: #01579b;
 }
 
-.view-button, .edit-button, .delete-button, .back-button {
-    padding: 8px 14px;
-    text-decoration: none;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-}
-
-.view-button { background-color: #4caf50; }
-.edit-button { background-color: #ff9800; }
-.delete-button { background-color: #f44336; }
-.back-button { background-color: #01579b; }
-
-.view-button:hover,
-.edit-button:hover,
-.delete-button:hover,
-.back-button:hover {
-    opacity: 0.9;
-}
 
 .doctor-card-actions {
     margin-top: 15px;
@@ -437,33 +229,81 @@ form button:hover {
     transition: background-color 0.3s ease;
 }
 
-.inline-form {
-    display: inline;
+
+/* LOGIN */
+.login-container {
+    max-width: 400px;
+    margin: 150px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 96, 158, 0.2);
+    text-align: center;
 }
 
-.inline-form button {
-    all: unset;
-    display: inline-block;
-    padding: 6px 10px;
-    background-color: #f44336;
-    color: white;
-    border: none !important;
+.login-container h1 {
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    color: #01579b;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-form label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.3rem;
+    color: #003366;
+}
+
+.login-form input {
+    padding: 8px 12px;
+    width: 100%;
+    border: 1px solid #b0cce8;
     border-radius: 6px;
-    font-size: 0.85rem;
-    font-family: inherit;
-    font-weight: 500;
+    margin-top: 5px;
+}
+
+/* Pulsante di login */
+.login-form button {
+    padding: 10px 20px;
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    box-shadow: none !important;
-    outline: none !important;
 }
 
-.inline-form button:hover {
-    background-color: #d32f2f;
+.login-form button:hover {
+    background-color: #0277bd;
 }
 
-.inline-form button:focus {
-	outline: none !important;
-	border: none !important;
-	box-shadow: none !important;
+/* Messaggio di errore */
+.error-message {
+    color: #d32f2f;
+    font-size: 0.95rem;
+    margin: -10px 0 10px 0;
 }
+
+/* Link di registrazione */
+.register-link {
+    margin-top: 20px;
+    font-size: 0.95rem;
+}
+
+.register-link a {
+    color: #0288d1;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+

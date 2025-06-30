@@ -9,7 +9,7 @@
 
 
 	  <header class="header-main">
-	    <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo">
+	    <a href="/"><img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo"></a>
 	    <h1 class="titolo-home">Benvenuto in <span class="highlight">HealConnect</span></h1>
 	    <nav class="nav">
 	      <a href="/" class="nav-link">Home</a>
@@ -60,7 +60,7 @@
 	              <div class="detail-row">
 	                  <span class="detail-label">📅 Data:</span>
 					  <div class="detail-row">
-					      <span class="detail-label">📅 Data:</span>
+					      <span class="detail-label"></span>
 					      <span th:if="${appointment.date != null}" th:text="${appointment.date}">Data non disponibile</span>
 					      <span th:unless="${appointment.date != null}">Data non disponibile</span>
 					  </div>
@@ -80,12 +80,11 @@
 	                  </span>
 	              </div>
 
-	              <div class="button-container" style="margin-top: 10px;">
-	                  <a th:href="@{'/appointment/' + ${appointment.id}}" class="view-button">🔍 Dettagli</a>
-	                  <a th:href="@{'/appointment/' + ${appointment.id} + '/edit'}" class="edit-button">✏️ Modifica</a>
-	              </div>
+				  <div class="doctor-card-actions button-container" style="margin-top: 10px;">
+				      <a th:href="@{'/appointment/' + ${appointment.id}}" class="small-button">🔍 Dettagli</a>
+				      <a th:href="@{'/appointment/' + ${appointment.id} + '/edit'}" class="small-button">✏️ Modifica</a>
+				  </div>
 
-	              <hr style="margin: 20px 0;" />
 	          </div>
 	      </div>
 
