@@ -2,10 +2,13 @@ package com.healconnect.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -21,7 +24,9 @@ public class Medication implements BaseEntity{
 	@NotBlank(message = "{medication.description.notblank}")
 	private String description;
 	
-    private String imageUrl;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
     
 	public Long getId() {
 		return id;
@@ -41,11 +46,11 @@ public class Medication implements BaseEntity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImageUrl() {
-		return imageUrl;
+	public Image getImage() {
+		return image;
 	}
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImage(Image image) {
+		this.image = image;
 	}
 	@Override
 	public int hashCode() {

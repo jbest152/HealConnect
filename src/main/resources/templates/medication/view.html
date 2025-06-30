@@ -27,9 +27,11 @@
        
                     <h3 th:text="${medication.name}">Nome medicinale</h3>
                     <p th:text="${medication.description}">Descrizione del medicinale</p>
-                    <div th:if="${medication.imageUrl != null}">
-                        <img th:src="@{${medication.imageUrl}}" alt="Immagine medicinale" style="max-width: 150px; margin-top: 10px;">
-                    </div>
+					<div th:if="${medication.image != null}">
+					           <img th:src="@{/image/{id}(id=${medication.id})}" 
+					                alt="Immagine medicinale"
+					                style="max-width: 150px; margin-top: 10px;">
+					</div>
             
         </section>
 		
