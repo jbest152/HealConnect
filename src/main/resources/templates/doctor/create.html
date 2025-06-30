@@ -10,6 +10,7 @@
 	<form th:action="@{/doctor}" th:object="${item}" method="post">
 	    <div>
 	        <label>Specializzazione:</label>
+			<input type="hidden" th:field="*{user}" />
 	        <input type="text" th:field="*{specialty}"/>
 	        <div th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}"></div>
 	    </div>
