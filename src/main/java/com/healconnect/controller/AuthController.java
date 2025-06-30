@@ -42,8 +42,10 @@ public class AuthController {
 			BindingResult credentialsBindingResult,
 			Model model) {
 
-		if (userBindingResult.hasErrors() || credentialsBindingResult.hasErrors()) 
+		if (userBindingResult.hasErrors() || credentialsBindingResult.hasErrors()) {
+			model.addAttribute("roles", Role.values());
 			return "auth/register";
+		}
 
 		credentials.setUser(user);
 		user.setCredentials(credentials);
