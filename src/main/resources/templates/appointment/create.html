@@ -53,7 +53,7 @@
 		    <option value="" disabled selected>Seleziona un dottore</option>
 		    <option th:each="doctor : ${doctors}" 
 		            th:value="${doctor.id}" 
-		            th:text="${doctor.user.name} + ' ' + ${doctor.user.surname} + ' (' + ${doctor.specialty} + ')'">
+		            th:text="${doctor.specialty}">
 		    </option>
 		  </select>
 		  <div th:if="${#fields.hasErrors('doctor')}" th:errors="*{doctor}"></div>
