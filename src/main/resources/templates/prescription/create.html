@@ -44,8 +44,7 @@
 				          <option value="">-- Seleziona un Paziente --</option>
 				          <option th:each="p : ${patients}" 
 				                  th:value="${p.id}" 
-				                  th:text="${p.user.name}"
-								  th:text="${p.user.surname}">
+				                  th:text="${p.user.name+' '+p.user.surname}">
 				          </option>
 				        </select>
 				        <div class="error-message" th:if="${#fields.hasErrors('medication')}" th:errors="*{medication}"></div>

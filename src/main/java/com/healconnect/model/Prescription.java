@@ -31,8 +31,21 @@ public class Prescription implements BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
+    private Doctor doctor; 
 
+	@ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+	
+	
+	
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 	public Long getId() {
 		return id;
 	}

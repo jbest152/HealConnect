@@ -45,6 +45,13 @@ public class PrescriptionController extends GenericController<Prescription>{
 		return super.showCreateForm(model);
 	}
 	
+	@GetMapping("/patient/{id}")
+	public String listFromPatient(@PathVariable Long id, Model model) {
+		model.addAttribute("prescriptions", patientService.findById(id).getPrescriptions());
+		model.addAttribute("user", patientService.findById(id).getUser());
+		return "prescription/list";
+	}
+	
 	@PreAuthorize("hasAuthority('DOCTOR')")
 	@GetMapping("/user/{id}/new")
 	public String showCreateForm(@PathVariable Long id, Model model){

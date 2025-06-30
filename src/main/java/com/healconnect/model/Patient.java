@@ -27,7 +27,18 @@ public class Patient implements BaseEntity{
 
     @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private MedicalRecord medicalRecord;
+    
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+    private List<Prescription> prescriptions;
 
+
+	public List<Prescription> getPrescriptions() {
+		return prescriptions;
+	}
+
+	public void setPrescriptions(List<Prescription> prescriptions) {
+		this.prescriptions = prescriptions;
+	}
 
 	public Long getId() {
 		return id;
