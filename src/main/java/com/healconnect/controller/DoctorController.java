@@ -38,7 +38,6 @@ public class DoctorController extends GenericController<Doctor> {
 	
 	@GetMapping("/complete-registration/{userId}")
 	public String registerDoctor(@PathVariable Long userId, Model model) {
-		System.out.println("ciao");
 		Doctor doctor = new Doctor();
 		doctor.setUser(userService.findById(userId));
 		model.addAttribute("item", doctor);

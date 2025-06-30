@@ -34,7 +34,9 @@ public abstract class GenericController<T extends BaseEntity> {
 
 	@GetMapping
 	public String list(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-		if (userDetails != null)
+		if (userDetails == null)
+			model.addAttribute("user", null);
+		else
 			model.addAttribute("user", credentialsService.findByUsername(userDetails.getUsername()).getUser());
 		model.addAttribute(className + "s", service.findAll());
 		return className + "/list";

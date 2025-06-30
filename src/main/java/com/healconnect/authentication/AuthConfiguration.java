@@ -55,6 +55,7 @@ public class AuthConfiguration {
                 .requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
                 
                 .requestMatchers(HttpMethod.GET, "/doctor/**", "/patient/**", "/medication/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/doctor").permitAll()
                 .requestMatchers(HttpMethod.POST, "/medication/**").hasAuthority(Role.ADMIN.toString())
                 
                 .requestMatchers(HttpMethod.GET, "/appointment/**", "/medical-record/**", "/prescription/**").hasAnyAuthority(Role.DOCTOR.toString(), Role.PATIENT.toString())
