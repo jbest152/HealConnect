@@ -1,24 +1,47 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Crea Dottore</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Nuovo Dottore</h1>
 
-	<form th:action="@{/doctor}" th:object="${item}" method="post">
-	    <div>
-	        <label>Specializzazione:</label>
-	        <input type="text" th:field="*{specialty}"/>
-	        <div th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}"></div>
-	    </div>
+<header class="header-main">
+    <img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo" />
+    <div class="header-content">
+        <h1 class="titolo-home">Specializzazione Nuovo Dottore</h1>
+        <nav class="nav">
+            <a class="nav-link" th:href="@{/home}">Home</a>
+            <a class="nav-link" th:href="@{/profile}">Profilo</a>
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </nav>
+    </div>
+</header>
 
-	    <div>
-	        <button type="submit">Salva</button>
-	    </div>
-	</form>
+<main>
+    <form th:action="@{/doctor}" th:object="${item}" method="post">
+        <div>
+            <label for="specialty">Specializzazione:</label>
+            <input type="text" id="specialty" th:field="*{specialty}" />
+            <div class="error-message" th:if="${#fields.hasErrors('specialty')}" th:errors="*{specialty}"></div>
+        </div>
 
-    <a th:href="@{/doctor}">← Torna alla lista</a>
+        <div>
+            <button type="submit">Salva</button>
+        </div>
+    </form>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a th:href="@{/doctor}" class="nav-link">← Torna alla lista</a>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 HealConnect - Tutti i diritti riservati
+</footer>
+
 </body>
 </html>
+

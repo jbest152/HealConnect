@@ -267,3 +267,56 @@ form button:hover {
     background-color: #1a5fc9;
 }
 
+
+/*MEDICO */
+.doctor-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.action-button {
+    background-color: #0288d1;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #0277bd;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.delete-button {
+    background-color: #e53935;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #c62828;
+}
+
+.details-container {
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+}
+
