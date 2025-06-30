@@ -64,8 +64,10 @@ public class HomeController {
 			return "redirect:/";
 		case DOCTOR:
 			id = doctorService.findByUser(user).getId();
+			break;
 		case PATIENT:
 			id = patientService.findByUser(user).getId();
+			break;
 		}
 	    return "redirect:/" + credentials.getRole().toString().toLowerCase() + "/" + id;
 	}
