@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.healconnect.model.Appointment;
+import com.healconnect.model.Doctor;
+import com.healconnect.model.Patient;
+import com.healconnect.model.Role;
+import com.healconnect.model.User;
 import com.healconnect.service.DoctorService;
 import com.healconnect.service.PatientService;
+import com.healconnect.service.UserService;
 
 import jakarta.validation.Valid;
 
@@ -28,6 +33,9 @@ public class AppointmentController extends GenericController<Appointment> {
 	
 	@Autowired
 	private DoctorService doctorService;
+	
+	@Autowired
+	private UserService userService;
 	
 	public AppointmentController() {
 		super(Appointment.class);
@@ -47,12 +55,21 @@ public class AppointmentController extends GenericController<Appointment> {
 		return "appointment/list";
 	}
 	
-	@GetMapping("/patient/{id}/new")
+	@GetMapping("/user/{id}/new")
 	public String showCreateForm(@PathVariable Long id, Model model) {
 		Appointment item = new Appointment();
-		item.setPatient(patientService.findById(id));
+		item.setBookingDate(LocalDate.now());
+		User user = userService.findById(id);
+		if (user.getCredentials().getRole() == Role.DOCTOR) {
+			model.addAttribute("doctors", new Doctor[] {doctorService.findByUser(user)});
+			model.addAttribute("patients", patientService.findAll());
+		}
+		if (user.getCredentials().getRole() == Role.PATIENT) {
+			model.addAttribute("patients", new Patient[] {patientService.findByUser(user)});
+			model.addAttribute("doctors", doctorService.findAll());
+		}
 		model.addAttribute("item", item);
-		return "appointment/list";
+		return "appointment/create";
 	}
 
 	@Override
@@ -66,7 +83,6 @@ public class AppointmentController extends GenericController<Appointment> {
 		model.addAttribute("item", item);
 		return "appointment/create";
 	}
-	
 
 	@Override
 	@PostMapping
