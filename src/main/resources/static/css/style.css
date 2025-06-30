@@ -307,3 +307,12 @@ body {
     text-decoration: underline;
 }
 
+/* Footer */
+footer {
+    background-color: #e1f5fe;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+    color: #007096;
+}
+
