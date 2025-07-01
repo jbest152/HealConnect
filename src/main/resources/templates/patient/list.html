@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Pazienti</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header class="header-main">
+        <a href="/"><img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo" /></a>
+        <div class="header-content">
+            <h1 class="titolo-home">Lista Pazienti</h1>
+            <nav class="nav">
+                <a class="nav-link" th:href="@{/home}">Home</a>
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="menu">
+        <div class="details-container" th:each="patient : ${patients}">
+            <div class="details-card">
+                <p><strong>👤 Nome:</strong> <span th:text="${patient.user.name + ' ' + patient.user.surname}"></span></p>
+                <p><strong>✉️ Email:</strong> <span th:text="${patient.user.email}"></span></p>
+                <p><strong>🎂 Data di nascita:</strong>
+                    <span th:if="${patient.user.birth != null}" th:text="${patient.user.birth}"></span>
+                    <span th:unless="${patient.user.birth != null}">Data non disponibile</span>
+                </p>
+
+                <div class="doctor-card-actions">
+                    <a class="small-button view-button" th:href="@{'/patient/' + ${patient.id}}">🔍 Dettagli</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 HealConnect - Tutti i diritti riservati
+    </footer>
+
+</body>
+</html>
