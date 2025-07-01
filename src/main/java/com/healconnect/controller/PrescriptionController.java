@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.healconnect.model.Doctor;
+import com.healconnect.model.Patient;
 import com.healconnect.model.Prescription;
 import com.healconnect.model.User;
 import com.healconnect.service.DoctorService;
@@ -47,8 +48,9 @@ public class PrescriptionController extends GenericController<Prescription>{
 	
 	@GetMapping("/patient/{id}")
 	public String listFromPatient(@PathVariable Long id, Model model) {
-		model.addAttribute("prescriptions", patientService.findById(id).getPrescriptions());
-		model.addAttribute("user", patientService.findById(id).getUser());
+		Patient patient = patientService.findById(id);
+		model.addAttribute("prescriptions", patient.getPrescriptions());
+		model.addAttribute("user", patient.getUser());
 		return "prescription/list";
 	}
 	
@@ -57,11 +59,12 @@ public class PrescriptionController extends GenericController<Prescription>{
 	public String showCreateForm(@PathVariable Long id, Model model){
 		Prescription item = new Prescription();
 		User user = userService.findById(id);
-		item.setDoctor(doctorService.findByUser(user));
+		Doctor doctor = doctorService.findByUser(user);
+		item.setDoctor(doctor);
 		item.setDate(LocalDate.now());
 		model.addAttribute("item", item);
 		model.addAttribute("medications", medicationService.findAll());
-		model.addAttribute("doctors",new Doctor[] {doctorService.findByUser(user)});
+		model.addAttribute("doctors",new Doctor[] {doctor});
 		model.addAttribute("patients", patientService.findAll());
 		return "prescription/create";
 	}
