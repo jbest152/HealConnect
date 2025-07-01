@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Dettagli Appuntamento</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+<header class="header-main">
+    <a href="/"><img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo" /></a>
+    <div class="header-content">
+        <h1 class="titolo-home">Dettagli Appuntamento</h1>
+        <nav class="nav">
+            <a class="nav-link" th:href="@{/home}">Home</a>
+            <a class="nav-link" th:href="@{/profile}">Profilo</a>
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="login-container">
+        <h1>Informazioni Appuntamento</h1>
+
+        <div class="details-card">
+            <div class="detail-row">
+                <span class="detail-label">📅 Data:</span>
+                <span th:text="${appointment.date}"></span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">🕒 Orario:</span>
+                <span th:text="${appointment.time}"></span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">🧑‍⚕️ Paziente:</span>
+                <span th:text="${appointment.patient.user.name + ' ' + appointment.patient.user.surname}"></span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">🩺 Dottore:</span>
+                <span th:text="${appointment.doctor.user.name + ' ' + appointment.doctor.user.surname + ' - ' + appointment.doctor.specialty}"></span>
+            </div>
+
+            <div class="button-container">
+                <a th:href="@{/appointment}" class="back-button">← Torna alla lista appuntamenti</a>
+            </div>
+			<div class="doctor-card-actions">
+                <a class="small-button edit-button" th:href="@{'/appointment/' + ${appointment.id} + '/edit'}">✏️ Modifica</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 HealConnect - Tutti i diritti riservati
+</footer>
+
+</body>
+</html>
