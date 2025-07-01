@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <title>Visualizza Prescrizione</title>
+    <link rel="stylesheet" href="/css/medicinali.css" />
+</head>
+<body>
+
+<header class="header-main">
+    <img src="/images/logo-healconnectGreen.png" alt="Logo HealConnect" class="logo" />
+    <div class="header-content">
+        <h1 class="titolo-home">Dettaglio Prescrizione</h1>
+        <nav class="nav">
+            <a class="nav-link" th:href="@{/home}">Home</a>
+            <a class="nav-link" th:if="${user} and ${user.credentials.role.name() != 'ADMIN'}" th:href="@{/profile}">Profilo</a>
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="record-container">
+
+        <div class="prescription-card">
+            <h3>Data: <span th:text="${prescription.date}"></span></h3>
+            <p><strong>Descrizione:</strong> <span th:text="${prescription.description}"></span></p>
+            <p><strong>Paziente:</strong> <span th:text="${prescription.patient.user.name} + ' ' + ${prescription.patient.user.surname}"></span></p>
+            <p><strong>Farmaco:</strong> <span th:text="${prescription.medication.name}"></span></p>
+            <p><strong>Medico:</strong> <span th:text="${prescription.doctor.user.name} + ' ' + ${prescription.doctor.user.surname}"></span></p>
+        </div>
+
+        <div class="button-container" style="margin-top: 30px; text-align: center;">
+            <a href="/prescription" class="back-button">Torna alla lista</a>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 HealConnect. Tutti i diritti riservati.
+</footer>
+
+</body>
+</html>
