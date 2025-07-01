@@ -23,7 +23,7 @@
     <section class="patient-info">
         <h2>✏️ Modifica le informazioni del medicinale</h2>
 
-        <form th:action="@{'/medication/' + *{id}}" th:object="${item}" method="post" enctype="multipart/form-data" class="medication-form">
+        <form th:action="@{'/medication/' + *{id} + '/edit'}" th:object="${item}" method="post" enctype="multipart/form-data" class="medication-form">
             <input type="hidden" th:field="*{id}" />
 
             <div class="form-group">
