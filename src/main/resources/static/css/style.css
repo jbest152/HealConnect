@@ -18,7 +18,7 @@ body {
 /* Header */
 .header-main {
     position: relative;
-    height: 220px;
+    height: 200px;
     display: flex;
     align-items: center;
     padding: 0 40px;
@@ -233,7 +233,7 @@ body {
 /* LOGIN */
 .login-container {
     max-width: 400px;
-    margin: 150px auto;
+    margin: 100px auto;
     padding: 40px;
     background-color: #ffffff;
     border-radius: 12px;
@@ -305,6 +305,33 @@ body {
 
 .register-link a:hover {
     text-decoration: underline;
+}
+
+
+/*MENU A TENDINA APPUNTAMENTO*/
+
+select, 
+input[type="date"], 
+input[type="time"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #b0cce8;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #004d66;
+    background-color: white;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+
+select:focus, 
+input[type="date"]:focus, 
+input[type="time"]:focus {
+    outline: none;
+    border-color: #0288d1;
+    box-shadow: 0 0 5px rgba(2, 136, 209, 0.5);
 }
 
 /* Footer */
