@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to bottom right, #e0fce8, #c0eac3);
@@ -12,6 +17,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+	height: 100%;
+	justify-content: space-between;
 }
 
 main.record-container {
@@ -233,9 +240,9 @@ main.record-container {
 
 /* Footer */
 footer {
-    background-color: #e8f5e9;
-    text-align: center;
-    padding: 15px;
-    font-size: 0.9rem;
-    color: #2e7d32;
+	background-color: #e8f5e9;
+	  text-align: center;
+	  padding: 15px;
+	  font-size: 0.9rem;
+	  color: #2e7d32;
 }
