@@ -38,11 +38,15 @@
                 <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error-message"></div>
             </div>
 
-            <div class="form-group">
-                <label for="image">Carica nuova immagine (opzionale)</label>
-                <input type="file" name="imageFile" accept="image/*" />
-            </div>
-
+			<div class="form-group">
+			    <label for="image">Carica nuova immagine (opzionale)</label>
+			    
+			    <input type="file" name="imageFile" id="imageFile" accept="image/*" class="file-input" />
+			    
+			    <label for="imageFile" class="file-upload-button">Scegli file</label>
+			    <span id="file-name" class="file-name-display">Nessun file selezionato</span>
+			</div>
+			    
             <div class="button-container">
                 <button type="submit" class="submit-button">Salva Modifiche</button>
             </div>
