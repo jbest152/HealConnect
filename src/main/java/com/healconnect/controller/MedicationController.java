@@ -29,9 +29,27 @@ public class MedicationController extends GenericController<Medication> {
                                    @RequestParam(value = "imageFile", required = false) MultipartFile imageFile) throws IOException {
 
         if (result.hasErrors()) {
-        	System.out.println("errore");
-        	for(var error : result.getAllErrors())
-        		System.out.println(error.toString());
+            return "medication/create";
+        }
+
+        if (imageFile != null && !imageFile.isEmpty()) {
+            Image img = new Image();
+            img.setName(imageFile.getOriginalFilename());
+            img.setType(imageFile.getContentType());
+            img.setData(imageFile.getBytes());
+            item.setImage(img);
+        }
+
+        service.save(item);
+        return "redirect:/medication/" + item.getId();
+    }
+	
+	@PostMapping("/{id}/edit")
+    public String updateMedication(@Valid @ModelAttribute("item") Medication item,
+                                   BindingResult result,
+                                   @RequestParam(value = "imageFile", required = false) MultipartFile imageFile) throws IOException {
+
+        if (result.hasErrors()) {
             return "medication/create";
         }
 
