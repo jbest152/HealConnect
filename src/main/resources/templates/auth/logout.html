@@ -1,3 +1,30 @@
-<form th:action="@{/logout}" method="post">
-  <button type="submit">Logout</button>
-</form>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>HealConnect - Logout</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <header class="header-main">
+        <a href="/"><img src="/images/logo-healconnect.png" alt="Logo HealConnect" class="logo"></a>
+    </header>
+
+    <main class="login-container">
+        <h1>Sei sicuro di voler uscire?</h1>
+
+        <form th:action="@{/logout}" method="post" class="login-form">
+            <button type="submit">Logout</button>
+        </form>
+
+        <p class="register-link">
+            Oppure <a href="/">torna alla Home</a>
+        </p>
+    </main>
+
+    <footer>
+        &copy; 2025 HealConnect - Tutti i diritti riservati
+    </footer>
+</body>
+</html>
+
