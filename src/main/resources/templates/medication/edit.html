@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <title>Modifica Medicinale</title>
+    <link rel="stylesheet" th:href="@{/css/medicinali.css}" />
+</head>
+<body>
+
+<header class="header-main">
+    <img src="/images/logo-healconnectGreen.png" alt="Logo HealConnect" class="logo" />
+    <div class="header-content">
+        <h1 class="titolo-home">Modifica Medicinale</h1>
+        <nav class="nav">
+            <a class="nav-link" th:href="@{/}">Home</a>
+            <a class="nav-link" th:href="@{/profile}">Profilo</a>
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<main class="record-container">
+    <section class="patient-info">
+        <h2>✏️ Modifica le informazioni del medicinale</h2>
+
+        <form th:action="@{'/medication/' + *{id}}" th:object="${item}" method="post" enctype="multipart/form-data" class="medication-form">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" id="name" th:field="*{name}" placeholder="Nome del medicinale" required />
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descrizione</label>
+                <textarea id="description" th:field="*{description}" rows="4" placeholder="Descrizione dettagliata" required></textarea>
+                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Carica nuova immagine (opzionale)</label>
+                <input type="file" name="imageFile" accept="image/*" />
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="submit-button">Salva Modifiche</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 HealConnect. Tutti i diritti riservati.</p>
+</footer>
+
+</body>
+</html>
