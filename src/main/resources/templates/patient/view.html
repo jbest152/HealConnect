@@ -14,7 +14,7 @@
 	    <nav class="nav">
 	      <a href="/" class="nav-link">Home</a>
 	      <a href="/doctor" class="nav-link">Dottori</a>
-	      <a th:href="@{'/medical-record/' + ${patient.medicalRecord.id}}" class="nav-link">Cartella Medica</a>
+	      <a th:href="@{'/prescription/patient/' + ${patient.id}}" class="nav-link">Cartella Medica</a>
 	      <a href="/login" class="nav-link">Login</a>
 	    </nav>
 	  </header>
