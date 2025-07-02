@@ -6,4 +6,5 @@ import com.healconnect.model.Prescription;
 
 public interface PrescriptionRepository extends CrudRepository<Prescription, Long> {
 
+	void deleteByMedicationId(Long medicationId);
 }

@@ -44,9 +44,6 @@
                 <span th:text="${appointment.doctor.user.name + ' ' + appointment.doctor.user.surname + ' - ' + appointment.doctor.specialty}"></span>
             </div>
 
-            <div class="button-container">
-                <a th:href="@{/appointment}" class="back-button">← Torna alla lista appuntamenti</a>
-            </div>
 			<div class="doctor-card-actions">
                 <a class="small-button edit-button" th:href="@{'/appointment/' + ${appointment.id} + '/edit'}">✏️ Modifica</a>
             </div>

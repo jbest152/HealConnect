@@ -32,7 +32,6 @@
 
 	     <div class="details-container" th:each="appointment : ${appointments}">
 	         <div class="details-card">
-	             <p><strong>ID:</strong> <span th:text="${appointment.id}"></span></p>
 	             <p><strong>Data:</strong> <span th:text="${appointment.date}"></span></p>
 	             <p><strong>Orario:</strong> <span th:text="${appointment.time}"></span></p>
 	             <p><strong>Paziente:</strong> <span th:text="${appointment.patient.user.name}"></span></p>
