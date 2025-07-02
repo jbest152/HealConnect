@@ -37,8 +37,6 @@ public class Prescription implements BaseEntity{
     @JoinColumn(name = "patient_id")
     private Patient patient;
 	
-	
-	
 	public Patient getPatient() {
 		return patient;
 	}
