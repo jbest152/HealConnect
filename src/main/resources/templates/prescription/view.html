@@ -26,7 +26,10 @@
             <h3>Data: <span th:text="${prescription.date}"></span></h3>
             <p><strong>Descrizione:</strong> <span th:text="${prescription.description}"></span></p>
             <p><strong>Paziente:</strong> <span th:text="${prescription.patient.user.name} + ' ' + ${prescription.patient.user.surname}"></span></p>
-            <p><strong>Farmaco:</strong> <span th:text="${prescription.medication.name}"></span></p>
+			<p>
+			  <strong>Farmaco:</strong>
+			  <a th:href="@{'/medication/' + ${prescription.medication.id}}" th:text="${prescription.medication.name}"></a>
+			</p>
             <p><strong>Medico:</strong> <span th:text="${prescription.doctor.user.name} + ' ' + ${prescription.doctor.user.surname}"></span></p>
         </div>
 

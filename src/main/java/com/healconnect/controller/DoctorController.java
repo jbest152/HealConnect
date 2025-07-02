@@ -59,6 +59,7 @@ public class DoctorController extends GenericController<Doctor> {
 	@PostMapping("/{id}")
 	public String update(@Valid @ModelAttribute("item") Doctor item, BindingResult result, @PathVariable Long id) {
 		item.setUser(item.getUser());
+		System.out.println("ciao");
 		if (result.hasErrors()) {
 			return "doctor/edit";
 		}

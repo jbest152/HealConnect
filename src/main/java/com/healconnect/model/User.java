@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -37,7 +39,9 @@ public class User implements BaseEntity{
 	private String email;
     
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birth;
+ 
     
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Credentials credentials;

@@ -26,7 +26,7 @@
 	            <li th:each="prescription : ${prescriptions}">
 	                <a th:href="@{/prescription/{id}(id=${prescription.id})}" class="prescription-card">
 	                    <h3 th:text="${prescription.medication.name}">Nome farmaco</h3>
-	                    <p><strong>Descrizione:</strong> <span th:text="${prescription.description}">Descrizione</span></p>
+	                    
 	                    <p><strong>Medico:</strong> <span th:text="${prescription.doctor.user.surname}">Dott. Nome</span></p>
 						<p><strong>Paziente:</strong> <span th:text="${prescription.patient.user.surname}">Cognome</span></p>
 	                    <p><strong>Data:</strong> <span th:text="${prescription.date}">Data</span></p>

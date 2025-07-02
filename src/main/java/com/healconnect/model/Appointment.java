@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,12 +22,14 @@ public class Appointment implements BaseEntity{
     private Long id;
 
 	@NotNull(message = "{appointment.date.notnull}")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 
 	@NotNull(message = "{appointment.time.notnull}")
 	private LocalTime time;
 
 	@NotNull(message = "{appointment.bookingDate.notnull}")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate bookingDate;
 
     @ManyToOne

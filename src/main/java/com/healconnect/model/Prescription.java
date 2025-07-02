@@ -3,6 +3,8 @@ package com.healconnect.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Prescription implements BaseEntity{
 	private Long id;
 
 	@NotNull(message = "{prescription.date.notnull}")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 
 	@NotBlank(message = "{prescription.description.notblank}")
