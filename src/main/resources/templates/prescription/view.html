@@ -23,20 +23,16 @@
     <div class="record-container">
 
         <div class="prescription-card">
-            <h3>Data: <span th:text="${prescription.date}"></span></h3>
-            <p><strong>Descrizione:</strong> <span th:text="${prescription.description}"></span></p>
-            <p><strong>Paziente:</strong> <span th:text="${prescription.patient.user.name} + ' ' + ${prescription.patient.user.surname}"></span></p>
 			<p>
 			  <strong>Farmaco:</strong>
 			  <a th:href="@{'/medication/' + ${prescription.medication.id}}" th:text="${prescription.medication.name}"></a>
 			</p>
+            <p><strong>Descrizione:</strong> <span th:text="${prescription.description}"></span></p>
+            <p><strong>Paziente:</strong> <span th:text="${prescription.patient.user.name} + ' ' + ${prescription.patient.user.surname}"></span></p>
             <p><strong>Medico:</strong> <span th:text="${prescription.doctor.user.name} + ' ' + ${prescription.doctor.user.surname}"></span></p>
+            <h3>Data: <span th:text="${prescription.date}"></span></h3>
         </div>
-
-        <div class="button-container" >
-            <a href="/prescription" class="submit-button">Torna alla lista</a>
-        </div>
-
+		
     </div>
 </main>
 
