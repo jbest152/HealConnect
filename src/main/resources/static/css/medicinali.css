@@ -73,7 +73,7 @@ main.record-container {
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    height: 220px;
+    height: 300px;
     width: auto;
     z-index: 1;
 }
