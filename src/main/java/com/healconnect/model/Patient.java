@@ -25,8 +25,6 @@ public class Patient implements BaseEntity{
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
-    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private MedicalRecord medicalRecord;
     
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
     private List<Prescription> prescriptions;
@@ -64,13 +62,6 @@ public class Patient implements BaseEntity{
 		this.appointments = appointments;
 	}
 
-	public MedicalRecord getMedicalRecord() {
-		return medicalRecord;
-	}
-
-	public void setMedicalRecord(MedicalRecord medicalRecord) {
-		this.medicalRecord = medicalRecord;
-	}
 
 	@Override
 	public int hashCode() {

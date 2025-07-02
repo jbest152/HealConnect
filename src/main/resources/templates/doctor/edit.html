@@ -47,11 +47,13 @@
 				</div>
 
 				<div class="detail-row">
-				    <label class="detail-label" for="birth">🎂 Data di nascita:</label>
-				    <input type="date" id="birth" th:field="*{user.birth}" required />
-				    <div th:if="${#fields.hasErrors('user.birth')}" th:errors="*{user.birth}"></div>
+					<label class="detail-label" for="birth">Data di nascita:</label>
+				      <input required type="date" id="birth"
+				             th:value="${#temporals.format(item.user.birth, 'yyyy-MM-dd')}"
+				             name="birth" />
+				      <div th:if="${#fields.hasErrors('user.birth')}" th:errors="*{user.birth}" class="error-message"></div>
 				</div>
-
+				
 			    <div class="detail-row">
 			        <label class="detail-label" for="specialty">🩺 Specializzazione:</label>
 			        <input type="text" id="specialty" th:field="*{specialty}" required />
