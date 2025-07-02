@@ -22,7 +22,7 @@
     <div class="details-card">
         <h2>✏️ Modifica Appuntamento</h2>
 
-        <form th:action="@{'/appointment/' + *{id}}" th:object="${item}" method="post">
+		<form th:action="@{'/appointment/' + *{id}}" th:object="${item}" method="post" class="login-form">
 
             <input type="hidden" th:field="*{id}" />
 			<input type="hidden" th:field="*{patient}" />
@@ -40,6 +40,10 @@
                 <input type="time" id="time" th:field="*{time}" required />
                 <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
             </div>
+			
+			<div class="button-container">
+				  <button type="submit">💾 Salva</button>
+			</div>
 
         </form>
     </div>

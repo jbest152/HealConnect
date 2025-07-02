@@ -22,7 +22,7 @@
         <div class="details-card">
             <h2>✏️ Modifica Dottore</h2>
 
-			<form th:action="@{'/doctor/' + *{id}}" th:object="${item}" method="post">
+			<form th:action="@{'/appointment/' + *{id}}" th:object="${item}" method="post" class="login-form">
 
 			    <input type="hidden" th:field="*{id}" />
 				<input type="hidden" th:field="*{user.id}" />
