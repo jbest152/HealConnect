@@ -60,6 +60,9 @@ public class MedicationController extends GenericController<Medication> {
             img.setData(imageFile.getBytes());
             item.setImage(img);
         }
+        else {
+        	item.setImage(super.service.findById(item.getId()).getImage());
+        }
 
         service.save(item);
         return "redirect:/medication/" + item.getId();
