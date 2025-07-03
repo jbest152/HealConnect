@@ -15,7 +15,9 @@
                 <a class="nav-link" th:href="@{/home}">Home</a>
                 <a class="nav-link" th:if="${user} and ${user.credentials.role.name() != 'ADMIN'}" th:href="@{/profile}">Profilo</a>
 			
-                <a class="nav-link" th:href="@{/logout}">Logout</a>
+                <a class="nav-link" th:if="${user}" th:href="@{/logout}">Logout</a>
+				<a class="nav-link" th:unless="${user}" th:href="@{/login}">Login</a>
+				
             </nav>
         </div>
     </header>

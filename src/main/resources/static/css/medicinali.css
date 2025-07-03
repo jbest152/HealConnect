@@ -118,7 +118,7 @@ main.record-container {
 }
 
 .patient-info h2, .prescriptions h2 {
-    color: #2e7d32;
+    color: #0e7d32;
     margin-bottom: 20px;
     font-size: 1.9rem;
 }
@@ -143,8 +143,9 @@ main.record-container {
 }
 
 .prescription-card {
-	text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto; /* permette di crescere e adattarsi */
     border: 2px solid #a5d6a7;
     background-color: #f1fff1;
     border-radius: 10px;
@@ -211,6 +212,20 @@ main.record-container {
     border-color: #388e3c;
     outline: none;
 }
+
+.medication-link {
+    text-decoration: none;
+    color: #264653;
+    font-weight: 600;
+    margin-left: 6px;
+    transition: color 0.3s ease;
+}
+
+.medication-link:hover {
+    color: #388e3c;
+    cursor: pointer;
+}
+
 
 .submit-button {
     background-color: #388e3c;
@@ -333,11 +348,11 @@ main.record-container {
 
 /* Footer */
 footer {
-	background-color: #e8f5e9;
-	  text-align: center;
-	  padding: 15px;
-	  font-size: 0.9rem;
-	  color: #2e7d32;
+  background-color: #e8f5e9;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  color: #2e7d32;
 }
 
 .medication-image {

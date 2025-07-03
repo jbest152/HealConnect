@@ -25,7 +25,10 @@
         <div class="prescription-card">
 			<p>
 			  <strong>Farmaco:</strong>
-			  <a th:href="@{'/medication/' + ${prescription.medication.id}}" th:text="${prescription.medication.name}"></a>
+			  <a th:href="@{'/medication/' + ${prescription.medication.id}}"
+			     th:text="${prescription.medication.name}"
+			     class="medication-link">
+			  </a>
 			</p>
             <p><strong>Descrizione:</strong> <span th:text="${prescription.description}"></span></p>
             <p><strong>Paziente:</strong> <span th:text="${prescription.patient.user.name} + ' ' + ${prescription.patient.user.surname}"></span></p>
