@@ -7,64 +7,66 @@
 </head>
 <body>
 
-    
+    <!-- HEADER -->
 	<header class="header-main">
-	       <a href="/"> <img src="/images/logo-healconnectGreen.png" alt="Logo HealConnect" class="logo" /></a>
-	        <div class="header-content">
-	            <h1 class="titolo-home">Medicinali</h1>
-	            <nav class="nav">
-	                <a class="nav-link" th:href="@{/}">Home</a>
-	                <a class="nav-link" th:href="@{/profile}">Profilo</a>
-	                <a class="nav-link" th:href="@{/logout}">Logout</a>
-	            </nav>
-	        </div>
-	    </header>
+        <a href="/"><img src="/images/logo-healconnectGreen.png" alt="Logo HealConnect" class="logo" /></a>
+        <div class="header-content">
+            <h1 class="titolo-home">Medicinale</h1>
+            <nav class="nav">
+                <a class="nav-link" th:href="@{/}">Home</a>
+                <a class="nav-link" th:href="@{/profile}">Profilo</a>
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </nav>
+        </div>
+    </header>
+    <!-- MAIN CONTENT -->
+    <main class="record-container">
+        <section class="prescriptions">
+            <h2>Medicinali disponibili</h2>
 
+            <ul class="prescription-list">
+                <li th:each="medication : ${medications}">
+                    <div class="prescription-card">
 
-		<main class="record-container">
-		    <section class="prescriptions">
-		        <h2>Medicinali disponibili</h2>
-				<ul class="prescription-list">
-					<li th:each="medication : ${medications}">
-					    <div class="prescription-card">
-					        <a th:href="@{/medication/{id}(id=${medication.id})}" style="text-decoration: none; color: inherit;">
-					            <h3 th:text="${medication.name}">Nome medicinale</h3>
+                        <a th:href="@{/medication/{id}(id=${medication.id})}" class="prescription-link">
+                            <h3 th:text="${medication.name}">Nome medicinale</h3>
 
-					            <div th:if="${medication.image != null}">
-					                <img th:src="@{'/image/' + ${medication.id}}"
-					                     alt="Immagine medicinale"
-					                     style="max-width: 100%; max-height: 150px; margin-top: 10px; border-radius: 6px;" />
-					            </div>
-					        </a>
+                            <div th:if="${medication.image != null}">
+                                <img th:src="@{'/image/' + ${medication.id}}"
+                                     alt="Immagine medicinale"
+                                     class="medication-image" />
+                            </div>
+                        </a>
 
-					        
-					        <div class="doctor-card-actions" th:if="${user.credentials.role.name() == 'ADMIN'}"
-					             style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
-					            <a class="small-button edit-button"
-					               th:href="@{'/medication/' + ${medication.id} + '/edit'}">✏️ Modifica</a>
+                        <div class="doctor-card-actions"
+                             th:if="${user.credentials.role.name() == 'ADMIN'}">
+                             
+                            <a class="small-button edit-button"
+                               th:href="@{'/medication/' + ${medication.id} + '/edit'}">
+                                ✏️ Modifica
+                            </a>
 
-					            <form th:action="@{'/medication/' + ${medication.id} + '/delete'}"
-					                  method="post" class="inline-form">
-					                <button type="submit" class="small-button delete-button"
-					                        onclick="return confirm('Sei sicuro di voler eliminare questo medicinale?')">
-					                    🗑️ Elimina
-					                </button>
-					            </form>
-					        </div>
-					    </div>
-					</li>
-				 </ul>
-						
-		    </section>
-	
-		
-			<div>
-		           <a href="/medication/new" class="submit-button" 
-				   		th:if="${user.credentials.role.name()== 'ADMIN'}">Aggiungi Medicinale</a>
-		       </div>
+                            <form th:action="@{'/medication/' + ${medication.id} + '/delete'}"
+                                  method="post" class="inline-form">
+                                <button type="submit" class="small-button delete-button"
+                                        onclick="return confirm('Sei sicuro di voler eliminare questo medicinale?')">
+                                    🗑️ Elimina
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- AGGIUNGI MEDICINALE -->
+        <div th:if="${user.credentials.role.name() == 'ADMIN'}" class="button-container">
+            <a href="/medication/new" class="submit-button">Aggiungi Medicinale</a>
+        </div>
     </main>
 
- 
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2025 HealConnect. Tutti i diritti riservati.</p>
     </footer>
