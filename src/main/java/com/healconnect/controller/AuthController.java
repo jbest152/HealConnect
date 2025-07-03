@@ -18,7 +18,7 @@ public class AuthController {
 
 	@Autowired
 	private CredentialsService credentialsService;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -42,6 +42,10 @@ public class AuthController {
 			BindingResult credentialsBindingResult,
 			Model model) {
 
+		if (credentialsService.findByUsername(credentials.getUsername())!=null) {
+			credentialsBindingResult.rejectValue("username", "error.credentials", "Username già esistente");
+		}
+		
 		if (userBindingResult.hasErrors() || credentialsBindingResult.hasErrors()) {
 			model.addAttribute("roles", Role.values());
 			return "auth/register";
@@ -67,7 +71,7 @@ public class AuthController {
 	public String logoutPage() {
 		return "auth/logout";
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout() {
 		return "auth/logout";
