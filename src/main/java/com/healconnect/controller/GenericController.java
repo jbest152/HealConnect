@@ -90,7 +90,7 @@ public abstract class GenericController<T extends BaseEntity> {
 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/{id}/delete")
-	public String delete(@PathVariable Long id) {
+	public String delete(@PathVariable Long id, @AuthenticationPrincipal UserDetails userDetails) {
 		service.deleteById(id);
 		return "redirect:/" + className;
 	}

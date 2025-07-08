@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,10 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.healconnect.model.Appointment;
+import com.healconnect.model.Credentials;
 import com.healconnect.model.Doctor;
 import com.healconnect.model.Patient;
 import com.healconnect.model.Role;
 import com.healconnect.model.User;
+import com.healconnect.service.AppointmentService;
+import com.healconnect.service.CredentialsService;
 import com.healconnect.service.DoctorService;
 import com.healconnect.service.PatientService;
 import com.healconnect.service.UserService;
@@ -37,6 +42,9 @@ public class AppointmentController extends GenericController<Appointment> {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private CredentialsService credentialsService;
+	
 	public AppointmentController() {
 		super(Appointment.class);
 	}
@@ -52,6 +60,7 @@ public class AppointmentController extends GenericController<Appointment> {
 	public String listFromDoctor(@PathVariable Long id, Model model) {
 		model.addAttribute("appointments", doctorService.findById(id).getAppointments());
 		model.addAttribute("user", doctorService.findById(id).getUser());
+		model.addAttribute("numero", doctorService.findById(id).getAppointments().size());
 		return "appointment/list";
 	}
 	
@@ -104,7 +113,15 @@ public class AppointmentController extends GenericController<Appointment> {
 	@Override
 	@PreAuthorize("hasAuthority('DOCTOR')")
 	@PostMapping("/{id}/delete")
-	public String delete(@PathVariable Long id) {
-		return super.delete(id);
+	public String delete(@PathVariable Long id, @AuthenticationPrincipal UserDetails userDetails) {
+		Credentials credenziali= credentialsService.findByUsername(userDetails.getUsername());
+		User user=  credenziali.getUser();
+		Doctor doctor= doctorService.findByUser(user);
+		Appointment appointment= super.service.findById(id);
+		if(appointment.getDoctor().equals(doctor))	{
+			return super.delete(id, userDetails);
+		}
+		return "redirect:/appointment/doctor/" + doctor.getId();
+		
 	}
 }
