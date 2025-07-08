@@ -38,7 +38,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/success")
-	public String home(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+	public String home(Model model, @AuthenticationPrincipal UserDetails userDetails) {/*prende utente loggato*/
 		Credentials credentials = credentialsService.findByUsername(userDetails.getUsername());
 		User user = credentials.getUser();
 		switch (credentials.getRole()) {
